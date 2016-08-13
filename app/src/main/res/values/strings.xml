@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">KeepInMind</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_basics_info">BasicsInfoActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="bem_vindo">Seja bem-vindo</string>
+    <string name="txt_info">Para começar a usar o aplicativo, insira alguns dados básicos, como a data do início do comprimido e a duração do ciclo menstrual da sua parceira. Clique em Concordo para começar.</string>
+    <string name="txt_termo">Termo de responsabilidade</string>
+    <string name="txt_info_termo">Ao clicar em Concordo, você reconhece e concorda que o Software não oferece conselhos médicos. Este Software tem fins informativos. Consulte o médico para todas as preocupações relacionadas à saúde. Você concorda que MinervaTI não terá qualquer obrigação jurídica ou moral em relação a você, sua parceira ou a qualquer outra pessoa quanto a utilização do Software ou por sua confiança em qualquer informação produzida por ele.</string>
+    <string name="concordo">Concordo</string>
+
 </resources>

@@ -17,4 +17,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!-- Styles - keepinmind app -->
+    <style name="keepinmindTheme" parent="keepinmindTheme.Base">
+
+    </style>
+
+    <style name="keepinmindTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar"> <!-- Light.DarkActionBar -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="keepinmindTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="keepinmindTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

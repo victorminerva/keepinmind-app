@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.minervati.com.br.keepinmind.HomeActivity">
+    tools:context=".activity.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -27,21 +27,25 @@
             <android.support.design.widget.TabItem
                 android:id="@+id/tabitem_calendar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Calendario"
+                />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabitem_alerts"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:text="Alertas"/>
 
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/viewpage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <include layout="@layout/content_home" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

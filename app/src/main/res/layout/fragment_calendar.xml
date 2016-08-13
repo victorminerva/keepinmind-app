@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.minervati.com.br.keepinmind.fragment.CalendarFragment">
+
+    <com.riontech.calendar.CustomCalendar
+        android:id="@+id/customCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:endMonth="11"
+        app:endYear="2199"
+        app:startMonth="01"
+        app:startYear="2016" />
+</FrameLayout>
