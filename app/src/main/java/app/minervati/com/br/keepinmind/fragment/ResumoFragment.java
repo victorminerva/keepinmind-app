@@ -42,13 +42,6 @@ public class ResumoFragment extends Fragment {
     private Integer             mes;
     private Integer             dia;
 
-
-    @NonNull
-    private static ResumoFragment   fragment;
-    @NonNull
-    private static Bundle           bundle;
-
-
     @NonNull
     private Activity                    activity;
 
@@ -61,8 +54,8 @@ public class ResumoFragment extends Fragment {
 
     public static ResumoFragment newInstance(Integer dia, Integer mes, Integer ano,
                                              Integer durCiclo, Integer qtdeDiasMesntr) {
-        fragment    = new ResumoFragment();
-        bundle      = new Bundle();
+        ResumoFragment  fragment    = new ResumoFragment();
+        Bundle          bundle      = new Bundle();
 
         bundle.putInt(KeepConstants.DIA, dia);
         bundle.putInt(KeepConstants.MES, mes);
@@ -89,21 +82,21 @@ public class ResumoFragment extends Fragment {
 
         telaDadosCinco.setPressed(Boolean.TRUE);
 
-        valueData.setText(formatToDate(bundle.getInt(KeepConstants.DIA),
-                bundle.getInt(KeepConstants.MES),
-                bundle.getInt(KeepConstants.ANO)));
-        valueCiclo.setText(String.valueOf(bundle.getInt(KeepConstants.DUR_CICLO)));
-        valueCicloMenst.setText(String.valueOf(bundle.getInt(KeepConstants.QTD_DIAS_MENSTRU)));
+        valueData.setText(formatToDate(getArguments().getInt(KeepConstants.DIA),
+                getArguments().getInt(KeepConstants.MES),
+                getArguments().getInt(KeepConstants.ANO)));
+        valueCiclo.setText(String.valueOf(getArguments().getInt(KeepConstants.DUR_CICLO)));
+        valueCicloMenst.setText(String.valueOf(getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU)));
 
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(bundle.getInt(KeepConstants.DIA),
-                        bundle.getInt(KeepConstants.MES),
-                        bundle.getInt(KeepConstants.ANO),
-                        bundle.getInt(KeepConstants.DUR_CICLO),
-                        bundle.getInt(KeepConstants.QTD_DIAS_MENSTRU)));
+                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                        getArguments().getInt(KeepConstants.MES),
+                        getArguments().getInt(KeepConstants.ANO),
+                        getArguments().getInt(KeepConstants.DUR_CICLO),
+                        getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU)));
             }
         });
 
@@ -111,7 +104,7 @@ public class ResumoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent home = new Intent(activity, HomeActivity.class);
-                home.putExtras(bundle);
+                home.putExtras(getArguments());
                 startActivity(home);
                 // close InfoBasics activity
                 activity.finish();

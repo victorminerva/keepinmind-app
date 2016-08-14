@@ -1,5 +1,6 @@
 package app.minervati.com.br.keepinmind.activity;
 
+import android.os.Bundle;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -38,8 +39,10 @@ public class HomeActivityAbstract extends AppCompatActivity {
 
         mTabLayout.setupWithViewPager(mViewPager);
 
+        Bundle extras = getIntent().getExtras();
+
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mViewPagerAdapter.addFrag(CalendarFragment.newInstance("", ""), "");
+        mViewPagerAdapter.addFrag(CalendarFragment.newInstance(extras), "");
         mViewPagerAdapter.addFrag(AlertsFragment.newInstance("", ""), "");
     }
 

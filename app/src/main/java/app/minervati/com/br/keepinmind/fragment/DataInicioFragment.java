@@ -1,7 +1,6 @@
 package app.minervati.com.br.keepinmind.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,7 +13,6 @@ import android.widget.ImageButton;
 
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.util.KeepConstants;
-import app.minervati.com.br.keepinmind.util.KeepUtil;
 
 public class DataInicioFragment extends Fragment {
 
@@ -25,10 +23,6 @@ public class DataInicioFragment extends Fragment {
 
     private FragmentManager     fragManager;
     private FragmentTransaction fragmentTransaction;
-    @NonNull
-    private static DataInicioFragment   fragment;
-    @NonNull
-    private static Bundle               bundle;
 
     private Integer durCiclo        = 1;
     private Integer qtdeDiasMenstru = 0;
@@ -39,8 +33,8 @@ public class DataInicioFragment extends Fragment {
 
     public static DataInicioFragment newInstance(Integer dia, Integer mes, Integer ano,
                                                  Integer durCiclo, Integer qtdeDiasMesntr) {
-        fragment    = new DataInicioFragment();
-        bundle      = new Bundle();
+        DataInicioFragment fragment    = new DataInicioFragment();
+        Bundle             bundle      = new Bundle();
 
         bundle.putInt(KeepConstants.DIA, dia);
         bundle.putInt(KeepConstants.MES, mes);
@@ -64,15 +58,15 @@ public class DataInicioFragment extends Fragment {
         init(inflate);
 
         telaDadosDois.setPressed(Boolean.TRUE);
-        if( bundle.getInt(KeepConstants.DIA) != 0 )
-            dpDataInicioPil.updateDate(bundle.getInt(KeepConstants.ANO), bundle.getInt(KeepConstants.MES),
-                bundle.getInt(KeepConstants.DIA));
+        if( getArguments().getInt(KeepConstants.DIA) != 0 )
+            dpDataInicioPil.updateDate(getArguments().getInt(KeepConstants.ANO), getArguments().getInt(KeepConstants.MES),
+                getArguments().getInt(KeepConstants.DIA));
 
-        if ( bundle.getInt(KeepConstants.DUR_CICLO) != 0)
-            durCiclo = bundle.getInt(KeepConstants.DUR_CICLO);
+        if ( getArguments().getInt(KeepConstants.DUR_CICLO) != 0)
+            durCiclo = getArguments().getInt(KeepConstants.DUR_CICLO);
 
-        if ( bundle.getInt(KeepConstants.QTD_DIAS_MENSTRU) != 0)
-            qtdeDiasMenstru = bundle.getInt(KeepConstants.QTD_DIAS_MENSTRU);
+        if ( getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU) != 0)
+            qtdeDiasMenstru = getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU);
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override

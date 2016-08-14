@@ -25,11 +25,6 @@ public class CicloFragment extends Fragment {
     private FragmentManager     fragManager;
     private FragmentTransaction fragmentTransaction;
 
-    @NonNull
-    private static CicloFragment    fragment;
-    @NonNull
-    private static Bundle           bundle;
-
     private Integer qtdeDiasMenstru = 0;
 
     public CicloFragment() {
@@ -38,8 +33,8 @@ public class CicloFragment extends Fragment {
 
     public static CicloFragment newInstance(Integer dia, Integer mes, Integer ano,
                                             Integer durCiclo, Integer qtdeDiasMesntr) {
-        fragment    = new CicloFragment();
-        bundle      = new Bundle();
+        CicloFragment   fragment    = new CicloFragment();
+        Bundle          bundle      = new Bundle();
 
         bundle.putInt(KeepConstants.DIA, dia);
         bundle.putInt(KeepConstants.MES, mes);
@@ -66,18 +61,18 @@ public class CicloFragment extends Fragment {
         npDurCiclo.setMinValue(21);
         npDurCiclo.setMaxValue(28);
 
-        if( bundle.getInt(KeepConstants.DUR_CICLO) != 1 )
-            npDurCiclo.setValue( bundle.getInt(KeepConstants.DUR_CICLO) );
+        if( getArguments().getInt(KeepConstants.DUR_CICLO) != 1 )
+            npDurCiclo.setValue( getArguments().getInt(KeepConstants.DUR_CICLO) );
 
-        if ( bundle.getInt(KeepConstants.QTD_DIAS_MENSTRU) != 0)
-            qtdeDiasMenstru = bundle.getInt(KeepConstants.QTD_DIAS_MENSTRU);
+        if ( getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU) != 0)
+            qtdeDiasMenstru = getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU);
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(DataInicioFragment.newInstance(bundle.getInt(KeepConstants.DIA),
-                        bundle.getInt(KeepConstants.MES),
-                        bundle.getInt(KeepConstants.ANO),
+                showFragmentCurrent(DataInicioFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                        getArguments().getInt(KeepConstants.MES),
+                        getArguments().getInt(KeepConstants.ANO),
                         npDurCiclo.getValue(),
                         qtdeDiasMenstru));
             }
@@ -86,9 +81,9 @@ public class CicloFragment extends Fragment {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(bundle.getInt(KeepConstants.DIA),
-                        bundle.getInt(KeepConstants.MES),
-                        bundle.getInt(KeepConstants.ANO),
+                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                        getArguments().getInt(KeepConstants.MES),
+                        getArguments().getInt(KeepConstants.ANO),
                         npDurCiclo.getValue(),
                         qtdeDiasMenstru));
             }
