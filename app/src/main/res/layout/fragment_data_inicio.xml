@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.minervati.com.br.keepinmind.fragment.BemVindoFragment">
+
+    <include
+        android:id="@+id/layout_blocos_welcome"
+        layout="@layout/content_blocos" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_blocos_welcome">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/data_inicio_pil"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/common_40_dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/p_data_inicio_pil"
+                android:textSize="20dp" />
+
+            <DatePicker
+                android:id="@+id/data_inicio_pil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin_normal"
+                android:calendarTextColor="@color/colorPrimary"
+                android:calendarViewShown="true"
+                android:datePickerMode="calendar" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/layoutBotoesData"
+        layout="@layout/content_botoes_back_next" />
+</RelativeLayout>

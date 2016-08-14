@@ -8,9 +8,22 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="bem_vindo">Seja bem-vindo</string>
+    <string name="data_inicio_pil">Data do início</string>
+    <string name="concordo">Concordo</string>
     <string name="txt_info">Para começar a usar o aplicativo, insira alguns dados básicos, como a data do início do comprimido e a duração do ciclo menstrual da sua parceira. Clique em Concordo para começar.</string>
     <string name="txt_termo">Termo de responsabilidade</string>
     <string name="txt_info_termo">Ao clicar em Concordo, você reconhece e concorda que o Software não oferece conselhos médicos. Este Software tem fins informativos. Consulte o médico para todas as preocupações relacionadas à saúde. Você concorda que MinervaTI não terá qualquer obrigação jurídica ou moral em relação a você, sua parceira ou a qualquer outra pessoa quanto a utilização do Software ou por sua confiança em qualquer informação produzida por ele.</string>
-    <string name="concordo">Concordo</string>
+    <string name="p_data_inicio_pil">Qual foi o primeiro dia que sua parceira tomou a pílula?</string>
+    <string name="p_ciclo_pil">Qual a duração do clico menstrual da sua parceira(21, 24 ou 28 dias)?</string>
+    <string name="anterior">Anterior</string>
+    <string name="proximo">Proximo</string>
+    <string name="t_duracao_ciclo">Insira a duração do clico</string>
+    <string name="t_duracao_menstru">Insira a duração da menstruação</string>
+    <string name="p_qtde_dias_menstru">Qual a duração da menstruação da sua parceira(a média é de 4 a 7 dias)?</string>
+    <string name="t_revisao">Revisão</string>
+    <string name="txt_data_inicio">Data do início da pílula</string>
+    <string name="txt_compri_ciclo">Comprimento do ciclo</string>
+    <string name="txt_duracao_mesntru">Duração da menstruação</string>
+    <string name="concluir">Concluir</string>
 
 </resources>

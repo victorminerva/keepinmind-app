@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.minervati.com.br.keepinmind.fragment.ResumoFragment">
+
+    <include
+        android:id="@+id/layout_blocos_welcome"
+        layout="@layout/content_blocos" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_blocos_welcome">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtRev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/t_revisao"
+                android:textSize="40dp" />
+
+            <TableLayout
+                android:id="@+id/listDadosInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtRev">
+
+                <TableRow
+                    android:id="@+id/tr1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtInfoCicloDur"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/txt_data_inicio"
+                        android:textAllCaps="true"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/valueData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="20dp" />
+
+                </TableRow>
+
+                <View
+                    android:id="@+id/firstDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#aaaaaa" />
+
+                <TableRow
+                    android:id="@+id/tr2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtCiclo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/txt_compri_ciclo"
+                        android:textAllCaps="true"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/valueCiclo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="20dp" />
+
+                </TableRow>
+
+                <View
+                    android:id="@+id/secondDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#aaaaaa" />
+
+                <TableRow
+                    android:id="@+id/tr3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtMens"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtInfoCicloDur"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/txt_duracao_mesntru"
+                        android:textAllCaps="true"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/valueMens"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="20dp" />
+
+                </TableRow>
+
+                <View
+                    android:id="@+id/thirtyDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#aaaaaa" />
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/layoutBotoesData"
+        layout="@layout/content_botoes_back_next" />
+</RelativeLayout>
