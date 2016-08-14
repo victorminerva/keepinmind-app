@@ -48,7 +48,7 @@ public class CalendarFragment extends Fragment {
         init(inflate);
 
         String[] arr = {"2016-08-10", "2016-08-11", "2016-08-15", "2016-08-16", "2016-08-25"};
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < arr.length; i++) {
             int eventCount = 3;
             customCalendar.addAnEvent(arr[i], eventCount, getEventDataList(eventCount));
         }

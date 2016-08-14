@@ -25,5 +25,6 @@
     <string name="txt_compri_ciclo">Comprimento do ciclo</string>
     <string name="txt_duracao_mesntru">Duração da menstruação</string>
     <string name="concluir">Concluir</string>
+    <string name="erro_ao_salvar">Erro ao salvar dados!</string>
 
 </resources>

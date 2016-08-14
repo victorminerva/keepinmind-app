@@ -26,6 +26,5 @@ public class InfoBasicsActivity extends AppCompatActivity {
     public void init(){
         fragManager         = getSupportFragmentManager();
         fragmentTransaction = fragManager.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
     }
 }
