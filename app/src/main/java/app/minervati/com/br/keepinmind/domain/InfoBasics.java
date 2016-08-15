@@ -1,6 +1,7 @@
 package app.minervati.com.br.keepinmind.domain;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by victorminerva on 14/08/2016.
@@ -9,6 +10,7 @@ public class InfoBasics extends RealmObject {
 
     public static final String ID = "gastei.br.com.minervati.app.domain.RealmObject.ID";
 
+    @PrimaryKey
     private Long    id;
     private Integer dia;
     private Integer mes;

@@ -26,5 +26,6 @@
     <string name="txt_duracao_mesntru">Duração da menstruação</string>
     <string name="concluir">Concluir</string>
     <string name="erro_ao_salvar">Erro ao salvar dados!</string>
+    <string name="sucesso_ao_salvar">Salvo com sucesso!</string>
 
 </resources>

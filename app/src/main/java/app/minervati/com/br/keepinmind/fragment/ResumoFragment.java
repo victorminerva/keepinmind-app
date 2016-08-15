@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -118,6 +119,7 @@ public class ResumoFragment extends Fragment {
                     startActivity(home);
                     // close InfoBasics activity
                     activity.finish();
+                    Toast.makeText(activity, R.string.sucesso_ao_salvar, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Toast.makeText(activity, R.string.erro_ao_salvar, Toast.LENGTH_SHORT).show();
                 }
@@ -160,7 +162,7 @@ public class ResumoFragment extends Fragment {
         infoBasics.setAno(getArguments().getInt(KeepConstants.ANO));
         infoBasics.setDuracaoCiclo(getArguments().getInt(KeepConstants.DUR_CICLO));
         infoBasics.setQtdeDiasMenstru(getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU));
-        realm.copyToRealmOrUpdate(infoBasics);
+        realm.copyToRealm(infoBasics);
         realm.commitTransaction();
     }
 
