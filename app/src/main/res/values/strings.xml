@@ -27,5 +27,25 @@
     <string name="concluir">Concluir</string>
     <string name="erro_ao_salvar">Erro ao salvar dados!</string>
     <string name="sucesso_ao_salvar">Salvo com sucesso!</string>
+    <string name="inicio_anti">Início do anticoncepcional</string>
+    <string name="primeir_dia">1º Dia</string>
+    <string name="msg_primeiro_dia_anti">Sua parceira iniciou ou deverá iniciar o anticoncepcional
+        neste dia.</string>
+    <string name="fim_anti">Fim do anticoncepcional</string>
+    <string name="ultimo_dia">Último dia</string>
+    <string name="msg_ultimo_dia_anti">Este deve ser o último dia, ou seja, sua parceira toma o
+        último medicamento nesta data.</string>
+    <string name="reinicio_anti">Reinício do anticoncepcional</string>
+    <string name="dia_anti_medio_risco">Dia de médio risco</string>
+    <string name="medio_risco">Médio risco</string>
+    <string name="msg_medio_risco">Neste dia mantenha a cautela, não vá com muita sede ao pode. Use camisinha!</string>
+    <string name="dia_anti_baixo_risco">Dia de baixo risco</string>
+    <string name="baixo_risco">Baixo risco</string>
+    <string name="msg_baixo_risco">Neste dia, aproveite. O risco ainda existe, porém é muito baixo.</string>
+    <string name="dia_anti_tpm">Possível dia de TPM</string>
+    <string name="tpm">TPM - Tensão Pré Menstrual</string>
+    <string name="msg_tpm">Provavelmente sua parceira está ou estará de TPM neste dia. Não faça nada para irritar-la!</string>
+    <string name="reinicio_dia">Retomada</string>
+    <string name="msg_reinicio_anti">Após os dias de pausa, sua parceira começa ou deverá começar uma nova cartela neste dia.</string>
 
 </resources>

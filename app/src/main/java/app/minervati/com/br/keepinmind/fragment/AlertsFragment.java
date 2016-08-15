@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import app.minervati.com.br.keepinmind.R;
+import cn.aigestudio.datepicker.views.DatePicker;
 
 public class AlertsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -53,7 +54,8 @@ public class AlertsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alerts, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_alerts, container, false);
+        return inflate;
     }
 
 }

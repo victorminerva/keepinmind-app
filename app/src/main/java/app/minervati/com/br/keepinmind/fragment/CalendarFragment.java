@@ -1,26 +1,19 @@
 package app.minervati.com.br.keepinmind.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.riontech.calendar.CustomCalendar;
-import com.riontech.calendar.dao.EventData;
-import com.riontech.calendar.dao.dataAboutDate;
-import com.riontech.calendar.utils.CalendarUtils;
-
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import app.minervati.com.br.keepinmind.R;
-import app.minervati.com.br.keepinmind.util.KeepConstants;
+import app.minervati.com.br.keepinmind.util.KeepUtil;
 
-public class CalendarFragment extends Fragment {
-
-    private CustomCalendar customCalendar;
+public class CalendarFragment extends CalendarFragmentAbstract {
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -35,9 +28,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            Log.d("ARGS", "TEM ARGUS" + getArguments().getInt(KeepConstants.DIA));
-        }
     }
 
     @Override
@@ -47,38 +37,92 @@ public class CalendarFragment extends Fragment {
         View inflate = inflater.inflate(R.layout.fragment_calendar, container, false);
         init(inflate);
 
-        String[] arr = {"2016-08-10", "2016-08-11", "2016-08-15", "2016-08-16", "2016-08-25"};
-        for (int i = 0; i < arr.length; i++) {
-            int eventCount = 3;
-            customCalendar.addAnEvent(arr[i], eventCount, getEventDataList(eventCount));
+        /**
+         * Retorna a data de inicio da pilula atraves do ano, mes e dia
+         * informados pelo usuario no cadastro das informacoes
+         * no formato 'yyyy-MM-dd'
+         */
+        Date dataInicial = formatDataFromAnoMesDiaToDate(infoBasics.getAno(), infoBasics.getMes(),
+                infoBasics.getDia());
+        calendar.setTime(dataInicial);
+
+        /**
+         * Add evento 1º dia do anticoncepcional
+         */
+        addOneEventIntoCalendar(calendar.getTime(), EVENT_COUNT_3,
+                KeepUtil.getStringFromResources(this, R.string.inicio_anti),
+                KeepUtil.getStringFromResources(this, R.string.primeir_dia),
+                KeepUtil.getStringFromResources(this, R.string.msg_primeiro_dia_anti));
+        /**
+         * Add evento durante o anticoncepcional
+         */
+        addEventsDiaMedioRisco();
+        addEventsDiasBaixoRisco();
+        addEventsDiasBaixoRiscoAndTPM();
+
+        /**
+         * Add evento Ultimo dia do anticoncepcional
+         */
+        calendar.add(Calendar.DATE, 1);
+        addOneEventIntoCalendar(calendar.getTime(), EVENT_COUNT_3,
+                KeepUtil.getStringFromResources(this, R.string.fim_anti),
+                KeepUtil.getStringFromResources(this, R.string.ultimo_dia),
+                KeepUtil.getStringFromResources(this, R.string.msg_ultimo_dia_anti));
+        for (int i = 0; i <= 12; i++) {
+            /**
+             * Add evento reinicio do anticoncepcional
+             */
+            calendar.add(Calendar.DATE, infoBasics.getQtdeDiasMenstru() + 1);
+            addOneEventIntoCalendar(calendar.getTime(), EVENT_COUNT_3,
+                    KeepUtil.getStringFromResources(this, R.string.reinicio_anti),
+                    KeepUtil.getStringFromResources(this, R.string.reinicio_dia),
+                    KeepUtil.getStringFromResources(this, R.string.msg_reinicio_anti));
+            /**
+             * Add evento durante o anticoncepcional
+             */
+            addEventsDiaMedioRisco();
+            addEventsDiasBaixoRisco();
+            addEventsDiasBaixoRiscoAndTPM();
+
+            /**
+             * Add evento Ultimo dia do anticoncepcional
+             */
+            calendar.add(Calendar.DATE, 1);
+            addOneEventIntoCalendar(calendar.getTime(), EVENT_COUNT_3,
+                    KeepUtil.getStringFromResources(this, R.string.fim_anti),
+                    KeepUtil.getStringFromResources(this, R.string.ultimo_dia),
+                    KeepUtil.getStringFromResources(this, R.string.msg_ultimo_dia_anti));
         }
         return inflate;
     }
 
-    private void init(View view){
-        customCalendar = (CustomCalendar) view.findViewById(R.id.customCalendar);
+    private void addEventsDiasBaixoRiscoAndTPM() {
+        for (int i=1; i < infoBasics.getDuracaoCiclo()-21; i++ ) {
+            calendar.add(Calendar.DATE, 1);
+            addTwoEventIntoCalendar(calendar.getTime(), EVENT_COUNT_2,
+                    listSection,
+                    listTitle,
+                    listSubject);
+        }
     }
 
-    public ArrayList<EventData> getEventDataList(int count) {
-        ArrayList<EventData> eventDataList = new ArrayList();
-
-        for (int i = 0; i < count; i++) {
-            EventData dateData = new EventData();
-            ArrayList<dataAboutDate> dataAboutDates = new ArrayList();
-
-            dateData.setSection(CalendarUtils.getNAMES()[new Random().nextInt(CalendarUtils.getNAMES().length)]);
-            dataAboutDate dataAboutDate = new dataAboutDate();
-
-            int index = new Random().nextInt(CalendarUtils.getEVENTS().length);
-
-            dataAboutDate.setTitle(CalendarUtils.getEVENTS()[index]);
-            dataAboutDate.setSubject(CalendarUtils.getEventsDescription()[index]);
-            dataAboutDates.add(dataAboutDate);
-
-            dateData.setData(dataAboutDates);
-            eventDataList.add(dateData);
+    private void addEventsDiasBaixoRisco() {
+        for (int i=1; i < infoBasics.getDuracaoCiclo()-11; i++ ){
+            calendar.add(Calendar.DATE, 1);
+            addOneEventIntoCalendar(calendar.getTime(), EVENT_COUNT_1,
+                    KeepUtil.getStringFromResources(this, R.string.dia_anti_baixo_risco),
+                    KeepUtil.getStringFromResources(this, R.string.baixo_risco),
+                    KeepUtil.getStringFromResources(this, R.string.msg_baixo_risco));
         }
+    }
 
-        return eventDataList;
+    private void addEventsDiaMedioRisco() {
+        for (int i=1; i < infoBasics.getDuracaoCiclo()-15; i++ ){
+            calendar.add(Calendar.DATE, 1);
+            addOneEventIntoCalendar(calendar.getTime(), EVENT_COUNT_2,
+                    KeepUtil.getStringFromResources(this, R.string.dia_anti_medio_risco),
+                    KeepUtil.getStringFromResources(this, R.string.medio_risco),
+                    KeepUtil.getStringFromResources(this, R.string.msg_medio_risco));
+        }
     }
 }
