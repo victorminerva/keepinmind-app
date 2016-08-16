@@ -47,5 +47,13 @@
     <string name="msg_tpm">Provavelmente sua parceira está ou estará de TPM neste dia. Não faça nada para irritar-la!</string>
     <string name="reinicio_dia">Retomada</string>
     <string name="msg_reinicio_anti">Após os dias de pausa, sua parceira começa ou deverá começar uma nova cartela neste dia.</string>
+    <string name="dom">DOM</string>
+    <string name="seg">SEG</string>
+    <string name="ter">TER</string>
+    <string name="qua">QUA</string>
+    <string name="qui">QUI</string>
+    <string name="sex">SEX</string>
+    <string name="sab">SAB</string>
+
 
 </resources>

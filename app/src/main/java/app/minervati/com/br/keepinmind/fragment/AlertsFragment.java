@@ -5,9 +5,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 import app.minervati.com.br.keepinmind.R;
-import cn.aigestudio.datepicker.views.DatePicker;
+import app.minervati.com.br.keepinmind.domain.IconReminderEnum;
+import app.minervati.com.br.keepinmind.util.CalendarView;
 
 public class AlertsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -55,6 +63,16 @@ public class AlertsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_alerts, container, false);
+
+        /*cv.setEventHandler(new CalendarView.EventHandler() {
+            @Override
+            public void onDayLongPress(Date date) {
+                // show returned day
+                DateFormat df = SimpleDateFormat.getDateInstance();
+                Toast.makeText(getActivity(), df.format(date), Toast.LENGTH_SHORT).show();
+            }
+
+        });*/
         return inflate;
     }
 
