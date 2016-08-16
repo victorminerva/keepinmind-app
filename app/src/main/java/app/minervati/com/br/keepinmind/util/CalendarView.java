@@ -237,7 +237,7 @@ public class CalendarView extends LinearLayout {
             TextView tv = (TextView) view;
             // if this day has an event, specify event image
             view.setBackgroundResource(0);
-            tv.setPadding(20, 20, 20, 20);
+            tv.setPadding(30, 30, 30, 30);
 
             // clear styling
             tv.setTypeface(null, Typeface.NORMAL);
