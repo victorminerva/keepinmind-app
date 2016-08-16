@@ -155,7 +155,7 @@ public class CalendarView extends LinearLayout {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> view, View cell, int position, long id) {
-                //eventHandler.onDayPress((Date) view.getItemAtPosition(position));
+                eventHandler.onDayPress((Date) view.getItemAtPosition(position));
             }
         });
     }
@@ -259,19 +259,19 @@ public class CalendarView extends LinearLayout {
                 for (Date eventDate : eventDays.keySet()) {
                     switch ( eventDays.get(eventDate) ){
                         case 1:
-                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_start);
+                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_starting);
                             break;
                         case 2:
-                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_check);
+                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_low_risk);
                             break;
                         case 3:
-                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_danger);
+                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_mid_risk);
                             break;
                         case 4:
-                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_red);
+                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_tpm);
                             break;
                         case 5:
-                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_end);
+                            addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_ending);
                             break;
                     }
                 }
@@ -301,5 +301,6 @@ public class CalendarView extends LinearLayout {
      */
     public interface EventHandler {
         void onDayLongPress(Date date);
+        void onDayPress(Date date);
     }
 }
