@@ -6,7 +6,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/ic_keepinmind_launcher" />
+            android:src="@drawable/image_keepinmind_raster" />
     </item>
 
 </layer-list>
