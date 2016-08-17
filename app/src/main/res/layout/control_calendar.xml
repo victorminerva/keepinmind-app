@@ -34,7 +34,7 @@
 			android:layout_toLeftOf="@+id/calendar_next_button"
 			android:gravity="center"
 			android:textAppearance="@android:style/TextAppearance.Medium"
-			android:textColor="#222222"
+			android:textColor="@color/colorPrimaryDark"
 			android:text="current date"/>
 
 		<!-- next button -->
