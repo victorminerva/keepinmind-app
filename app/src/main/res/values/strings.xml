@@ -55,6 +55,8 @@
     <string name="sex">SEX</string>
     <string name="sab">SAB</string>
     <string name="sem_evento_nesta_data">Sem Eventos</string>
-
-
+    <string name="title_activity_settings">Sobre e Ajuda</string>
+    <string name="versao">Versão 1.0</string>
+    <string name="all_right_reserved">All rights reserved.</string>
+    <string name="keepinmind_inc">\u00A9 2016 KeepInMind App Inc</string>
 </resources>

@@ -1,5 +1,6 @@
 package app.minervati.com.br.keepinmind.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +36,8 @@ public class HomeActivity extends HomeActivityAbstract {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(settingsActivity);
+            this.finish();
             return true;
         }
 
