@@ -1,14 +1,49 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:calendarNS="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="app.minervati.com.br.keepinmind.fragment.CalendarFragment">
 
-    <app.minervati.com.br.keepinmind.util.CalendarView
-        android:id="@+id/calendar_view"
+    <LinearLayout
+        android:id="@+id/ll_legenda"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        calendarNS:dateFormat="MMMM yyyy" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <app.minervati.com.br.keepinmind.util.CalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="wrap_content"
+            android:layout_height="380dp"
+            calendarNS:dateFormat="MMMM yyyy" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/greyed_out"
+            android:padding="4dp"
+            android:text="TITULO"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="SUBTITULO"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="DESCRICAO"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp"/>
+    </LinearLayout>
+</ScrollView>

@@ -2,6 +2,7 @@ package app.minervati.com.br.keepinmind.fragment;
 
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,6 +20,9 @@ import io.realm.RealmResults;
 public class CalendarFragmentAbstract extends Fragment {
 
     protected CalendarView      calendarView;
+    protected TextView          tvTitle;
+    protected TextView          tvSubtitle;
+    protected TextView          tvDesc;
 
     protected Realm                     realm;
     protected RealmResults<InfoBasics>  realmInfoBasics;
@@ -29,6 +33,10 @@ public class CalendarFragmentAbstract extends Fragment {
 
     protected void init(View view){
         calendarView    = ((CalendarView) view.findViewById(R.id.calendar_view));
+        tvTitle         = (TextView) view.findViewById(R.id.tv_title);
+        tvSubtitle      = (TextView) view.findViewById(R.id.tv_subtitle);
+        tvDesc          = (TextView) view.findViewById(R.id.tv_desc);
+
         events          = new HashMap<>();
 
         realm           = Realm.getInstance(getActivity());
