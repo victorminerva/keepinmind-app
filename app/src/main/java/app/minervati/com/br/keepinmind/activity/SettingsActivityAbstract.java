@@ -26,14 +26,15 @@ public class SettingsActivityAbstract extends AppCompatActivity {
 
     protected Toolbar toolbar;
 
-    {
-        itens.add("Sobre");
-    }
-
     protected void init(){
         toolbar     = (Toolbar) findViewById(R.id.toolbar);
         listItens   = (ListView) findViewById(R.id.listItens);
         adapter     = new SobreAjudaListAdapter(this, itens, subTitles);
+
+        itens.add(getResources().getString(R.string.sobre));
+        subTitles.add("");
+        itens.add(getResources().getString(R.string.definicoes));
+        subTitles.add(getResources().getString(R.string.definicoes_subtitle));
     }
 
     protected void showOverLay() {

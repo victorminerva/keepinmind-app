@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.minervati.com.br.keepinmind.R;
+import app.minervati.com.br.keepinmind.util.KeepUtil;
 
 /**
  * Created by victorminerva on 17/08/2016.
@@ -33,9 +34,12 @@ public class SobreAjudaListAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(R.layout.list_sobre_ajuda, null, true);
 
         TextView txtTitle       = (TextView) rowView.findViewById(R.id.itemName);
+        TextView txtSubtitle    = (TextView) rowView.findViewById(R.id.itemSubtitle);
 
         txtTitle.setText(itemname.get(position));
-
+        if (!"".equals(subTitleItem.get(position))) {
+            txtSubtitle.setText(subTitleItem.get(position));
+        }
         return rowView;
     };
 

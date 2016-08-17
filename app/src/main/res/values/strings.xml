@@ -59,4 +59,7 @@
     <string name="versao">Versão 1.0</string>
     <string name="all_right_reserved">All rights reserved.</string>
     <string name="keepinmind_inc">\u00A9 2016 KeepInMind App Inc</string>
+    <string name="sobre">Sobre</string>
+    <string name="definicoes">Definições</string>
+    <string name="definicoes_subtitle">Clique aqui para alterar os dados.</string>
 </resources>
