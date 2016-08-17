@@ -86,9 +86,12 @@ public class CalendarFragment extends CalendarFragmentAbstract {
             @Override
             public void onDayPress(Date date) {
                 dataSelectedFormatada = sdf.format(date);
+                value               = 0;
+                titulo              = "";
+                subtitulo           = "";
+                descricao           = "";
 
                 value = checkDateSelected(sdf, dataSelectedFormatada, value);
-
                 switch (value){
                     case 1:
                         titulo      = getResources().getString(R.string.inicio_anti);
@@ -115,6 +118,10 @@ public class CalendarFragment extends CalendarFragmentAbstract {
                         subtitulo   = getResources().getString(R.string.ultimo_dia);
                         descricao   = getResources().getString(R.string.msg_ultimo_dia_anti);
                         break;
+                    default:
+                        titulo      = getResources().getString(R.string.sem_evento_nesta_data);
+                        subtitulo   = "";
+                        descricao   = "";
                 }
 
                 if(!"".equals(titulo)) {
