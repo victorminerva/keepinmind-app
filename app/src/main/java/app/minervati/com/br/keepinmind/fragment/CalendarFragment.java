@@ -4,21 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.domain.IconReminderEnum;
 import app.minervati.com.br.keepinmind.util.CalendarView;
-import app.minervati.com.br.keepinmind.util.KeepUtil;
 
 public class CalendarFragment extends CalendarFragmentAbstract {
 
@@ -93,18 +85,10 @@ public class CalendarFragment extends CalendarFragmentAbstract {
 
             @Override
             public void onDayPress(Date date) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-                String dataFormatada = sdf.format(date);
-                Integer value    = 0;
-                String titulo    = "";
-                String subtitulo = "";
-                String descricao = "";
+                dataSelectedFormatada = sdf.format(date);
 
-                for(Date data : events.keySet()){
-                    if (dataFormatada.equalsIgnoreCase(sdf.format(data))){
-                        value = events.get(data);
-                    }
-                }
+                value = checkDateSelected(sdf, dataSelectedFormatada, value);
+
                 switch (value){
                     case 1:
                         titulo      = getResources().getString(R.string.inicio_anti);
@@ -132,14 +116,16 @@ public class CalendarFragment extends CalendarFragmentAbstract {
                         descricao   = getResources().getString(R.string.msg_ultimo_dia_anti);
                         break;
                 }
-                tvTitle.setText(titulo+" - "+dataFormatada.substring(0,1).toUpperCase() + dataFormatada.substring(1));
-                tvSubtitle.setText(subtitulo);
-                tvDesc.setText(descricao);
 
-                tvTitle.setVisibility(View.VISIBLE);
-                tvSubtitle.setVisibility(View.VISIBLE);
-                tvDesc.setVisibility(View.VISIBLE);
+                if(!"".equals(titulo)) {
+                    tvTitle.setText(titulo + " - " + dataSelectedFormatada.substring(0, 1).toUpperCase() + dataSelectedFormatada.substring(1));
+                    tvSubtitle.setText(subtitulo);
+                    tvDesc.setText(descricao);
 
+                    tvTitle.setVisibility(View.VISIBLE);
+                    tvSubtitle.setVisibility(View.VISIBLE);
+                    tvDesc.setVisibility(View.VISIBLE);
+                }
             }
         });
 

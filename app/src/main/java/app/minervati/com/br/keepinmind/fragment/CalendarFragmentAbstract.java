@@ -30,6 +30,12 @@ public class CalendarFragmentAbstract extends Fragment {
     protected InfoBasics                infoBasics;
     protected Calendar                  calendar;
     protected HashMap<Date, Integer>    events;
+    protected SimpleDateFormat          sdf;
+    protected String                    dataSelectedFormatada;
+    protected Integer                   value;
+    protected String                    titulo;
+    protected String                    subtitulo;
+    protected String                    descricao;
 
     protected void init(View view){
         calendarView    = ((CalendarView) view.findViewById(R.id.calendar_view));
@@ -45,6 +51,12 @@ public class CalendarFragmentAbstract extends Fragment {
         infoBasics      = realmInfoBasics.where().equalTo("id", 1).findAll().get(0);
 
         calendar        = Calendar.getInstance();
+
+        sdf                 = new SimpleDateFormat("dd MMMM yyyy");
+        value               = 0;
+        titulo              = "";
+        subtitulo           = "";
+        descricao           = "";
     }
 
     protected void addEventsDiasBaixoRisco() {
@@ -66,5 +78,14 @@ public class CalendarFragmentAbstract extends Fragment {
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_TPM.getValue());
         }
+    }
+
+    protected Integer checkDateSelected(SimpleDateFormat sdf, String dataFormatada, Integer value) {
+        for(Date data : events.keySet()){
+            if (dataFormatada.equalsIgnoreCase(sdf.format(data))){
+                value = events.get(data);
+            }
+        }
+        return value;
     }
 }
