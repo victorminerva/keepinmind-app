@@ -19,12 +19,12 @@ import app.minervati.com.br.keepinmind.adapter.SobreAjudaListAdapter;
 public class SettingsActivityAbstract extends AppCompatActivity {
 
     protected ListView              listItens;
+    protected Toolbar               toolbar;
+
     protected List<String>          itens       = new ArrayList<String>();
     protected List<String>          subTitles   = new ArrayList<String>();
+
     protected SobreAjudaListAdapter adapter;
-
-
-    protected Toolbar toolbar;
 
     protected void init(){
         toolbar     = (Toolbar) findViewById(R.id.toolbar);
@@ -32,9 +32,6 @@ public class SettingsActivityAbstract extends AppCompatActivity {
         adapter     = new SobreAjudaListAdapter(this, itens, subTitles);
 
         itens.add(getResources().getString(R.string.sobre));
-        subTitles.add("");
-        itens.add(getResources().getString(R.string.definicoes));
-        subTitles.add(getResources().getString(R.string.definicoes_subtitle));
     }
 
     protected void showOverLay() {

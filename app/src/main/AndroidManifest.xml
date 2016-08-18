@@ -21,9 +21,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.InfoBasicsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/keepinmindTheme" />
         <activity
             android:name=".activity.SplashScreenActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +36,7 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

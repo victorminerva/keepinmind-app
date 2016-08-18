@@ -34,12 +34,9 @@ public class SobreAjudaListAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(R.layout.list_sobre_ajuda, null, true);
 
         TextView txtTitle       = (TextView) rowView.findViewById(R.id.itemName);
-        TextView txtSubtitle    = (TextView) rowView.findViewById(R.id.itemSubtitle);
 
         txtTitle.setText(itemname.get(position));
-        if (!"".equals(subTitleItem.get(position))) {
-            txtSubtitle.setText(subTitleItem.get(position));
-        }
+
         return rowView;
     };
 
