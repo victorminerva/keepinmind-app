@@ -62,4 +62,5 @@
     <string name="sobre">Sobre</string>
     <string name="definicoes">Definições</string>
     <string name="definicoes_subtitle">Clique aqui para alterar os dados.</string>
+    <string name="editar_dados">Editar dados</string>
 </resources>

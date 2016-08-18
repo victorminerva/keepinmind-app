@@ -35,10 +35,13 @@ public class HomeActivity extends HomeActivityAbstract {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivity(settingsActivity);
-            this.finish();
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                startActivity(settingsActivity);
+                this.finish();
+                break;
+            case R.id.action_edit:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
