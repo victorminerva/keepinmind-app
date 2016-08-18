@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="app.minervati.com.br.keepinmind.activity.UpdateDadosActivity"
+    tools:showIn="@layout/activity_update_dados">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin_normal">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data Inicío da Pílula"
+                android:inputType="date"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_ciclo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_ciclo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duração Ciclo"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_menstr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/input_menstr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duração da Menstruação"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>-->
+
+        <!--<Button
+            android:id="@+id/btn_atualiza_dado"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:text="@string/btn_atualizar_dados"/>-->
+
+    </LinearLayout>
+
+</ScrollView>

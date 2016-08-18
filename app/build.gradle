@@ -27,4 +27,5 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:support-annotations:24.2.0'
     compile 'io.realm:realm-android:0.84.1'
+    compile 'com.wdullaer:materialdatetimepicker:2.3.0'
 }

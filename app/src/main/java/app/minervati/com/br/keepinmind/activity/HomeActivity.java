@@ -1,6 +1,5 @@
 package app.minervati.com.br.keepinmind.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +40,8 @@ public class HomeActivity extends HomeActivityAbstract {
                 this.finish();
                 break;
             case R.id.action_edit:
+                startActivity(updateActivity);
+                this.finish();
                 break;
         }
 

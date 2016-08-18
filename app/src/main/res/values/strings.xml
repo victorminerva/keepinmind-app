@@ -63,4 +63,7 @@
     <string name="definicoes">Definições</string>
     <string name="definicoes_subtitle">Clique aqui para alterar os dados.</string>
     <string name="editar_dados">Editar dados</string>
+    <string name="alterar_dados">Alterar dados</string>
+    <string name="btn_atualizar_dados">Atualizar dados</string>
+    <string name="title_activity_update_dados">Alterar Dados</string>
 </resources>
