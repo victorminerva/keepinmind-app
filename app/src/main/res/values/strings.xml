@@ -66,4 +66,28 @@
     <string name="alterar_dados">Alterar dados</string>
     <string name="btn_atualizar_dados">Atualizar dados</string>
     <string name="title_activity_update_dados">Alterar Dados</string>
+    <string name="hint_data_inicio">Data Inicío do anticoncepcional</string>
+    <string name="duracao_menstru">Duração do período menstrual (a média é de 4 a 7 dias)</string>
+    <string name="duracao_ciclo">Duração do ciclo (21, 24 ou 28 dias)</string>
+
+    <string-array name="values_ciclo">
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
+
+    <string-array name="values_menstrual">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
 </resources>

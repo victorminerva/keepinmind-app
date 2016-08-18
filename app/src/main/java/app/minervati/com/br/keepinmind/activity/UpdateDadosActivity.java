@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import app.minervati.com.br.keepinmind.R;
 
@@ -33,6 +34,8 @@ public class UpdateDadosActivity extends UpdateDadosActivityAbstract {
             }
         });
 
+        duracaoCiclo.setSelectedItem(infoBasics.getDuracaoCiclo()-21);
+        duracaoMenstrual.setSelectedItem(infoBasics.getQtdeDiasMenstru()-1);
     }
 
     @Override
@@ -48,6 +51,15 @@ public class UpdateDadosActivity extends UpdateDadosActivityAbstract {
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.action_update:
+                try {
+                    updateDados(infoBasics);
+                    Toast.makeText(this, "Atualizado com sucesso!", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                }catch (Exception e){
+                    Toast.makeText(this, "Falha ao atualizar!", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -58,4 +70,6 @@ public class UpdateDadosActivity extends UpdateDadosActivityAbstract {
         inflater.inflate(R.menu.menu_update_dados, menu);
         return true;
     }
+
+
 }

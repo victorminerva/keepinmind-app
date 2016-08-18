@@ -28,4 +28,5 @@ dependencies {
     compile 'com.android.support:support-annotations:24.2.0'
     compile 'io.realm:realm-android:0.84.1'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
+    compile 'com.wefika:horizontal-picker:1.1.1'
 }
