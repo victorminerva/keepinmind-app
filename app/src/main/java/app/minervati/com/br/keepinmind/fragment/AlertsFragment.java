@@ -18,22 +18,30 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import app.minervati.com.br.keepinmind.R;
+import app.minervati.com.br.keepinmind.domain.Lembrete;
+import app.minervati.com.br.keepinmind.util.KeepUtil;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
 
-    protected TextView              mHoraAnti;
-    protected ToggleButton          mToggleOnOff;
-    protected RecyclerView          listReminder;
-    protected FloatingActionButton  fabAddLembrete;
+    protected TextView                  mHoraAnti;
+    protected ToggleButton              mToggleOnOff;
+    protected RecyclerView              listReminder;
+    protected FloatingActionButton      fabAddLembrete;
 
-    protected TimePickerDialog      mTimePickerDialog;
+    protected TimePickerDialog          mTimePickerDialog;
 
-    protected SimpleDateFormat      sdf;
-    protected Calendar              calendar;
+    protected SimpleDateFormat          sdf;
+    protected Calendar                  calendar;
 
-    protected Activity              activity;
+    protected Activity                  activity;
+    protected Lembrete                  lembrete;
+    protected Realm                     realm;
+    protected RealmResults<Lembrete>    realmLembretes;
 
     public AlertsFragment() {
         // Required empty public constructor
@@ -58,13 +66,16 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         View inflate = inflater.inflate(R.layout.fragment_alerts, container, false);
         init(inflate);
 
+        if (!KeepUtil.isNull(lembrete) && !KeepUtil.isNull(lembrete.getHora()))
+            calendar.set(0,0,0,lembrete.getHora(), lembrete.getMinuto(), 0);
+
         mHoraAnti.setText(sdf.format(calendar.getTime()));
 
         mToggleOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                    timeDialog(calendar).show(getActivity().getFragmentManager(), "TimePicker");
+                    timeDialog(calendar).show(activity.getFragmentManager(), "TimePicker");
                 }
             }
         });
@@ -81,8 +92,12 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         sdf             = new SimpleDateFormat("HH:mm");
         calendar        = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-    }
 
+        activity        = getActivity();
+        realm           = Realm.getInstance(activity);
+        realmLembretes  = realm.where(Lembrete.class).findAll();
+        lembrete        = realmLembretes.where().equalTo("id", 1).findAll().get(0);
+    }
 
     //Mostra um picker de data.
     protected TimePickerDialog timeDialog(Calendar cDefault) {
@@ -106,5 +121,19 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
         calendar.set(0,0,0,hourOfDay, minute, second);
         mHoraAnti.setText( sdf.format(calendar.getTime()) );
+
+        salvaHorarioMedicamento(hourOfDay, minute);
+    }
+
+    private void salvaHorarioMedicamento(int hourOfDay, int minute) {
+        realm.beginTransaction();
+        lembrete.setId(1L);
+        lembrete.setHora(hourOfDay);
+        lembrete.setMinuto(minute);
+        lembrete.setStatusLembrete(true);
+        lembrete.setTituloLembrete(getResources().getString(R.string.hora_do_anti));
+        lembrete.setDataLembrete(new Date());
+        realm.copyToRealmOrUpdate(lembrete);
+        realm.commitTransaction();
     }
 }

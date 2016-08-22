@@ -13,18 +13,18 @@ public class Lembrete extends RealmObject {
     public static final String ID = "gastei.br.com.minervati.app.domain.RealmObject.ID";
 
     @PrimaryKey
-    private Integer     id;
+    private Long        id;
     private Integer     hora;
     private Integer     minuto;
     private String      tituloLembrete;
     private Date        dataLembrete;
     private Boolean     statusLembrete;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
