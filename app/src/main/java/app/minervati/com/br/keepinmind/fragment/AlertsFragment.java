@@ -1,50 +1,47 @@
 package app.minervati.com.br.keepinmind.fragment;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.CompoundButton;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
-import java.text.DateFormat;
+import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 
 import app.minervati.com.br.keepinmind.R;
-import app.minervati.com.br.keepinmind.domain.IconReminderEnum;
-import app.minervati.com.br.keepinmind.util.CalendarView;
 
-public class AlertsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeSetListener {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    protected TextView              mHoraAnti;
+    protected ToggleButton          mToggleOnOff;
+    protected RecyclerView          listReminder;
+    protected FloatingActionButton  fabAddLembrete;
+
+    protected TimePickerDialog      mTimePickerDialog;
+
+    protected SimpleDateFormat      sdf;
+    protected Calendar              calendar;
+
+    protected Activity              activity;
 
     public AlertsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AlertsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AlertsFragment newInstance(String param1, String param2) {
+    public static AlertsFragment newInstance() {
         AlertsFragment fragment = new AlertsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,10 +49,6 @@ public class AlertsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -63,17 +56,55 @@ public class AlertsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_alerts, container, false);
+        init(inflate);
 
-        /*cv.setEventHandler(new CalendarView.EventHandler() {
+        mHoraAnti.setText(sdf.format(calendar.getTime()));
+
+        mToggleOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onDayLongPress(Date date) {
-                // show returned day
-                DateFormat df = SimpleDateFormat.getDateInstance();
-                Toast.makeText(getActivity(), df.format(date), Toast.LENGTH_SHORT).show();
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    timeDialog(calendar).show(getActivity().getFragmentManager(), "TimePicker");
+                }
             }
+        });
 
-        });*/
         return inflate;
     }
 
+    protected void init(View view){
+        mHoraAnti       = (TextView) view.findViewById(R.id.tv_hora_anti);
+        mToggleOnOff    = (ToggleButton) view.findViewById(R.id.toggle_sim_nao);
+        listReminder    = (RecyclerView) view.findViewById(R.id.list_item_reminder);
+        fabAddLembrete  = (FloatingActionButton) view.findViewById(R.id.fab_add_reminder);
+
+        sdf             = new SimpleDateFormat("HH:mm");
+        calendar        = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+    }
+
+
+    //Mostra um picker de data.
+    protected TimePickerDialog timeDialog(Calendar cDefault) {
+        mTimePickerDialog = TimePickerDialog.newInstance(
+                this,
+                cDefault.get(Calendar.HOUR_OF_DAY),
+                cDefault.get(Calendar.MINUTE),
+                cDefault.get(Calendar.SECOND),
+                false);
+
+        mTimePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                mToggleOnOff.setChecked(false);
+            }
+        });
+        return mTimePickerDialog;
+    }
+
+    @Override
+    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
+        calendar.set(0,0,0,hourOfDay, minute, second);
+        mHoraAnti.setText( sdf.format(calendar.getTime()) );
+    }
 }

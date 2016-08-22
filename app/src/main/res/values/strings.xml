@@ -69,6 +69,9 @@
     <string name="hint_data_inicio">Data Inicío do anticoncepcional</string>
     <string name="duracao_menstru">Duração do período menstrual (a média é de 4 a 7 dias)</string>
     <string name="duracao_ciclo">Duração do ciclo (21, 24 ou 28 dias)</string>
+    <string name="hora_do_anti">Horário do medicamento.</string>
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
 
     <string-array name="values_ciclo">
         <item>21</item>

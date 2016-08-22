@@ -32,7 +32,7 @@ public class HomeActivityAbstract extends AppCompatActivity {
     protected ViewPagerAdapter mViewPagerAdapter;
 
     protected Intent           settingsActivity;
-    protected Intent            updateActivity;
+    protected Intent           updateActivity;
 
     protected void init(){
         mToolbar            = (Toolbar) findViewById(R.id.toolbar);
@@ -46,8 +46,8 @@ public class HomeActivityAbstract extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mViewPagerAdapter.addFrag(CalendarFragment.newInstance(extras), "");
-        mViewPagerAdapter.addFrag(AlertsFragment.newInstance("", ""), "");
+        mViewPagerAdapter.addFrag(CalendarFragment.newInstance(extras), "CALENDÁRIO");
+        mViewPagerAdapter.addFrag(AlertsFragment.newInstance(), "LEMBRETES");
 
         settingsActivity            = new Intent(this, SettingsActivity.class);
         updateActivity              = new Intent(this, UpdateDadosActivity.class);
