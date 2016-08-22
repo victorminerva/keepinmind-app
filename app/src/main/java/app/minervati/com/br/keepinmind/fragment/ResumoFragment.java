@@ -51,9 +51,6 @@ public class ResumoFragment extends Fragment {
     private Realm                       realm;
     private RealmResults<InfoBasics>    realmInfoBasics;
 
-/*    private SharedPreferences           preferences;
-    private SharedPreferences.Editor    editor;*/
-
     public ResumoFragment() {
         // Required empty public constructor
     }
@@ -141,8 +138,6 @@ public class ResumoFragment extends Fragment {
 
         realm               = Realm.getInstance(activity);
         realmInfoBasics     = realm.where( InfoBasics.class ).findAll();
-        /*preferences         = getActivity().getSharedPreferences(KeepConstants.SP_KEEP_DADOS, Context.MODE_PRIVATE);
-        editor              = preferences.edit();*/
 
         buttonConcluir.setText(R.string.concluir);
         buttonConcluir.setTextColor(KeepUtil.getColor(R.color.white, getActivity()));
