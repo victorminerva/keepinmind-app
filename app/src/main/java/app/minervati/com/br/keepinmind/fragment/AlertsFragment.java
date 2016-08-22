@@ -66,8 +66,10 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         View inflate = inflater.inflate(R.layout.fragment_alerts, container, false);
         init(inflate);
 
-        if (!KeepUtil.isNull(lembrete) && !KeepUtil.isNull(lembrete.getHora()))
+        if (!KeepUtil.isNull(lembrete) && !KeepUtil.isNull(lembrete.getHora())){
             calendar.set(0,0,0,lembrete.getHora(), lembrete.getMinuto(), 0);
+            mToggleOnOff.setChecked(lembrete.getStatusLembrete());
+        }
 
         mHoraAnti.setText(sdf.format(calendar.getTime()));
 
@@ -76,6 +78,8 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     timeDialog(calendar).show(activity.getFragmentManager(), "TimePicker");
+                } else {
+                    alteraStatusMedicamento(lembrete.getHora(), lembrete.getMinuto(), false);
                 }
             }
         });
@@ -125,12 +129,20 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         salvaHorarioMedicamento(hourOfDay, minute);
     }
 
-    private void salvaHorarioMedicamento(int hourOfDay, int minute) {
+    private void salvaHorarioMedicamento(Integer hourOfDay, Integer minute) {
+        preencheDadosLembrete(hourOfDay, minute, true);
+    }
+
+    private void alteraStatusMedicamento(Integer hourOfDay, Integer minute, Boolean status) {
+        preencheDadosLembrete(hourOfDay, minute, status);
+    }
+
+    private void preencheDadosLembrete(Integer hourOfDay, Integer minute, Boolean status) {
         realm.beginTransaction();
         lembrete.setId(1L);
         lembrete.setHora(hourOfDay);
         lembrete.setMinuto(minute);
-        lembrete.setStatusLembrete(true);
+        lembrete.setStatusLembrete(status);
         lembrete.setTituloLembrete(getResources().getString(R.string.hora_do_anti));
         lembrete.setDataLembrete(new Date());
         realm.copyToRealmOrUpdate(lembrete);
