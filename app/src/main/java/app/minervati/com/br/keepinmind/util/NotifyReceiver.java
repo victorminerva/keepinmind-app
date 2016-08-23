@@ -10,8 +10,7 @@ import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
 
 import app.minervati.com.br.keepinmind.R;
-import app.minervati.com.br.keepinmind.ReminderActionActivity;
-import app.minervati.com.br.keepinmind.activity.HomeActivity;
+import app.minervati.com.br.keepinmind.activity.ReminderActionActivity;
 
 public class NotifyReceiver extends BroadcastReceiver {
 
