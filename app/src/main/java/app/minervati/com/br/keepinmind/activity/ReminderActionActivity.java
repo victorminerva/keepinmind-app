@@ -1,8 +1,11 @@
 package app.minervati.com.br.keepinmind.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -30,10 +33,6 @@ public class ReminderActionActivity extends AppCompatActivity {
     protected OpcoesListAdapter adapter;
     protected InfoBasics        infoBasics;
     protected SmsManager        smsManager;
-    protected TelephonyManager  tm;
-    protected String            countryCode;
-
-    protected Intent            whatsappIntent;
 
     protected Realm                     realm;
     protected RealmResults<InfoBasics>  realmInfoBasics;
@@ -52,10 +51,7 @@ public class ReminderActionActivity extends AppCompatActivity {
                 try {
                     switch (position) {
                         case 0:
-                            Uri uri = Uri.parse("smsto:" + infoBasics.getTelefone());
-                            whatsappIntent = new Intent(Intent.ACTION_SENDTO, uri);
-                            whatsappIntent.setPackage("com.whatsapp");
-                            startActivity(Intent.createChooser(whatsappIntent, infoBasics.getMsgDefault()));
+                            enviaMsgToWhatsApp();
                             message = "Redirecionando para o whatsapp..";
                             break;
                         case 1:
@@ -64,6 +60,8 @@ public class ReminderActionActivity extends AppCompatActivity {
                             finish();
                             break;
                         case 2:
+                            if (realizaLigacao()) return;
+                            message = "Redirecionando para ligação..";
                             break;
                         default:
                             break;
@@ -95,8 +93,6 @@ public class ReminderActionActivity extends AppCompatActivity {
         adapter     = new OpcoesListAdapter(this, itensname, itemimage);
 
         smsManager  = SmsManager.getDefault();
-        tm          = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        countryCode = tm.getSimCountryIso();
 
         realm           = Realm.getInstance(this);
         realmInfoBasics = realm.where(InfoBasics.class).findAll();
@@ -108,4 +104,25 @@ public class ReminderActionActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    private boolean realizaLigacao() {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + infoBasics.getTelefone()));
+        if (ActivityCompat.checkSelfPermission(ReminderActionActivity.this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        startActivity(callIntent);
+        return false;
+    }
+
+    private void enviaMsgToWhatsApp() {
+        StringBuffer sb = new StringBuffer(infoBasics.getTelefone());
+        sb.setCharAt(2, ' ');
+        Uri uri = Uri.parse("smsto:" + sb.toString());
+        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+        i.setPackage("com.whatsapp");
+        startActivity(Intent.createChooser(i, infoBasics.getMsgDefault()));
+    }
+
 }

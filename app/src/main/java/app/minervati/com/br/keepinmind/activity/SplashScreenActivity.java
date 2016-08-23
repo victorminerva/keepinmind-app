@@ -32,7 +32,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Manifest.permission.RECEIVE_BOOT_COMPLETED,
                 Manifest.permission.WAKE_LOCK,
                 Manifest.permission.SET_ALARM,
-                Manifest.permission.SEND_SMS
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.CALL_PHONE
         };
         ActivityCompat.requestPermissions(this, permissoes, WRITE_EXTERNAL_STORAGE_PERMISSION);
 
