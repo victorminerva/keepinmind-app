@@ -26,12 +26,16 @@ public class QtdeDiasMenstruFragment extends Fragment {
     private FragmentManager     fragManager;
     private FragmentTransaction fragmentTransaction;
 
+    private String  telefone        = "";
+    private String  msgDefault      = "";
+
     public QtdeDiasMenstruFragment() {
         // Required empty public constructor
     }
 
     public static QtdeDiasMenstruFragment newInstance(Integer dia, Integer mes, Integer ano,
-                                                      Integer durCiclo, Integer qtdeDiasMesntr) {
+                                                      Integer durCiclo, Integer qtdeDiasMesntr,
+                                                      String telefone, String msgDefault) {
         QtdeDiasMenstruFragment fragment    = new QtdeDiasMenstruFragment();
         Bundle                  bundle      = new Bundle();
 
@@ -40,6 +44,8 @@ public class QtdeDiasMenstruFragment extends Fragment {
         bundle.putInt(KeepConstants.ANO, ano);
         bundle.putInt(KeepConstants.DUR_CICLO, durCiclo);
         bundle.putInt(KeepConstants.QTD_DIAS_MENSTRU, qtdeDiasMesntr);
+        bundle.putString(KeepConstants.TELEFONE, telefone);
+        bundle.putString(KeepConstants.MSG_DEFAULT, msgDefault);
 
         fragment.setArguments(bundle);
 
@@ -64,6 +70,12 @@ public class QtdeDiasMenstruFragment extends Fragment {
         if( getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU) != 0 )
             npQtdDiasMenstru.setValue(getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU));
 
+        if ( getArguments().getString(KeepConstants.TELEFONE) != "")
+            telefone = getArguments().getString(KeepConstants.TELEFONE);
+
+        if ( getArguments().getString(KeepConstants.MSG_DEFAULT) != "")
+            msgDefault = getArguments().getString(KeepConstants.MSG_DEFAULT);
+
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,18 +83,22 @@ public class QtdeDiasMenstruFragment extends Fragment {
                         getArguments().getInt(KeepConstants.MES),
                         getArguments().getInt(KeepConstants.ANO),
                         getArguments().getInt(KeepConstants.DUR_CICLO),
-                        npQtdDiasMenstru.getValue()));
+                        npQtdDiasMenstru.getValue(),
+                        getArguments().getString(KeepConstants.TELEFONE),
+                        getArguments().getString(KeepConstants.MSG_DEFAULT)));
             }
         });
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(ResumoFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                showFragmentCurrent(DadosParceiraFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
                         getArguments().getInt(KeepConstants.MES),
                         getArguments().getInt(KeepConstants.ANO),
                         getArguments().getInt(KeepConstants.DUR_CICLO),
-                        npQtdDiasMenstru.getValue()));
+                        npQtdDiasMenstru.getValue(),
+                        getArguments().getString(KeepConstants.TELEFONE),
+                        getArguments().getString(KeepConstants.MSG_DEFAULT)));
             }
         });
         return inflate;

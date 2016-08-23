@@ -48,7 +48,7 @@ public class BemVindoFragment extends Fragment {
                 /*fragmentTransaction.setCustomAnimations(R.anim.slide_in_right,
                         R.anim.slide_out_left);*/
                 fragmentTransaction.replace(R.id.container_frag,
-                        DataInicioFragment.newInstance(0, 0, 0, 0, 0));
+                        DataInicioFragment.newInstance(0, 0, 0, 0, 0, "", ""));
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

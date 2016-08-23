@@ -30,10 +30,12 @@ public class ResumoFragment extends Fragment {
 
     private Button          buttonConcluir;
     private Button          buttonBack;
-    private ImageButton     telaDadosCinco;
+    private ImageButton     telaDadosSeis;
     private TextView        valueData;
     private TextView        valueCiclo;
     private TextView        valueCicloMenst;
+    private TextView        valueTel;
+    private TextView        valueMsg;
 
     private FragmentManager     fragManager;
     private FragmentTransaction fragmentTransaction;
@@ -56,7 +58,8 @@ public class ResumoFragment extends Fragment {
     }
 
     public static ResumoFragment newInstance(Integer dia, Integer mes, Integer ano,
-                                             Integer durCiclo, Integer qtdeDiasMesntr) {
+                                             Integer durCiclo, Integer qtdeDiasMesntr,
+                                             String telefone, String msgDefault) {
         ResumoFragment  fragment    = new ResumoFragment();
         Bundle          bundle      = new Bundle();
 
@@ -65,6 +68,8 @@ public class ResumoFragment extends Fragment {
         bundle.putInt(KeepConstants.ANO, ano);
         bundle.putInt(KeepConstants.DUR_CICLO, durCiclo);
         bundle.putInt(KeepConstants.QTD_DIAS_MENSTRU, qtdeDiasMesntr);
+        bundle.putString(KeepConstants.TELEFONE, telefone);
+        bundle.putString(KeepConstants.MSG_DEFAULT, msgDefault);
 
         fragment.setArguments(bundle);
 
@@ -83,23 +88,26 @@ public class ResumoFragment extends Fragment {
         final View inflate = inflater.inflate(R.layout.fragment_resumo, container, false);
         init(inflate);
 
-        telaDadosCinco.setPressed(Boolean.TRUE);
+        telaDadosSeis.setPressed(Boolean.TRUE);
 
         valueData.setText(formatToDate(getArguments().getInt(KeepConstants.DIA),
                 getArguments().getInt(KeepConstants.MES),
                 getArguments().getInt(KeepConstants.ANO)));
         valueCiclo.setText(String.valueOf(getArguments().getInt(KeepConstants.DUR_CICLO)));
         valueCicloMenst.setText(String.valueOf(getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU)));
-
+        valueTel.setText(String.valueOf(getArguments().getString(KeepConstants.TELEFONE)));
+        valueMsg.setText(String.valueOf(getArguments().getString(KeepConstants.MSG_DEFAULT)));
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                showFragmentCurrent(DadosParceiraFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
                         getArguments().getInt(KeepConstants.MES),
                         getArguments().getInt(KeepConstants.ANO),
                         getArguments().getInt(KeepConstants.DUR_CICLO),
-                        getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU)));
+                        getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU),
+                        getArguments().getString(KeepConstants.TELEFONE),
+                        getArguments().getString(KeepConstants.MSG_DEFAULT)));
             }
         });
 
@@ -125,10 +133,12 @@ public class ResumoFragment extends Fragment {
     private void init(View view){
         buttonConcluir      = (Button) view.findViewById(R.id.btn_next);
         buttonBack          = (Button) view.findViewById(R.id.btn_back);
-        telaDadosCinco      = (ImageButton) view.findViewById(R.id.tela_dados_cinco);
+        telaDadosSeis       = (ImageButton) view.findViewById(R.id.tela_dados_seis);
         valueData           = (TextView) view.findViewById(R.id.valueData);
         valueCiclo          = (TextView) view.findViewById(R.id.valueCiclo);
         valueCicloMenst     = (TextView) view.findViewById(R.id.valueMens);
+        valueTel            = (TextView) view.findViewById(R.id.valueTel);
+        valueMsg            = (TextView) view.findViewById(R.id.valueMsg);
 
         fragManager         = getFragmentManager();
         fragmentTransaction = fragManager.beginTransaction();
@@ -148,12 +158,16 @@ public class ResumoFragment extends Fragment {
         realm.beginTransaction();
         realmInfoBasics.sort("id", RealmResults.SORT_ORDER_DESCENDING);
         long id = realmInfoBasics.size() == 0 ? 1 : realmInfoBasics.get(0).getId() + 1;
+
         infoBasics.setId(id);
         infoBasics.setDia(getArguments().getInt(KeepConstants.DIA));
         infoBasics.setMes(getArguments().getInt(KeepConstants.MES));
         infoBasics.setAno(getArguments().getInt(KeepConstants.ANO));
         infoBasics.setDuracaoCiclo(getArguments().getInt(KeepConstants.DUR_CICLO));
         infoBasics.setQtdeDiasMenstru(getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU));
+        infoBasics.setTelefone(getArguments().getString(KeepConstants.TELEFONE));
+        infoBasics.setMsgDefault(getArguments().getString(KeepConstants.MSG_DEFAULT));
+
         realm.copyToRealm(infoBasics);
         realm.commitTransaction();
     }

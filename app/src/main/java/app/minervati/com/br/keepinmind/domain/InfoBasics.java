@@ -17,6 +17,8 @@ public class InfoBasics extends RealmObject {
     private Integer ano;
     private Integer qtdeDiasMenstru;
     private Integer duracaoCiclo;
+    private String  telefone;
+    private String  msgDefault;
 
 
     public Long getId() {
@@ -54,5 +56,21 @@ public class InfoBasics extends RealmObject {
     }
     public void setDuracaoCiclo(Integer duracaoCiclo) {
         this.duracaoCiclo = duracaoCiclo;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getMsgDefault() {
+        return msgDefault;
+    }
+
+    public void setMsgDefault(String msgDefault) {
+        this.msgDefault = msgDefault;
     }
 }

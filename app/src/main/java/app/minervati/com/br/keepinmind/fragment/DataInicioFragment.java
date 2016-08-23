@@ -26,13 +26,16 @@ public class DataInicioFragment extends Fragment {
 
     private Integer durCiclo        = 1;
     private Integer qtdeDiasMenstru = 0;
+    private String  telefone        = "";
+    private String  msgDefault      = "";
 
     public DataInicioFragment() {
         // Required empty public constructor
     }
 
     public static DataInicioFragment newInstance(Integer dia, Integer mes, Integer ano,
-                                                 Integer durCiclo, Integer qtdeDiasMesntr) {
+                                                 Integer durCiclo, Integer qtdeDiasMesntr,
+                                                 String telefone, String msgDefault) {
         DataInicioFragment fragment    = new DataInicioFragment();
         Bundle             bundle      = new Bundle();
 
@@ -41,6 +44,9 @@ public class DataInicioFragment extends Fragment {
         bundle.putInt(KeepConstants.ANO, ano);
         bundle.putInt(KeepConstants.DUR_CICLO, durCiclo);
         bundle.putInt(KeepConstants.QTD_DIAS_MENSTRU, qtdeDiasMesntr);
+        bundle.putString(KeepConstants.TELEFONE, telefone);
+        bundle.putString(KeepConstants.MSG_DEFAULT, msgDefault);
+
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -58,6 +64,7 @@ public class DataInicioFragment extends Fragment {
         init(inflate);
 
         telaDadosDois.setPressed(Boolean.TRUE);
+
         if( getArguments().getInt(KeepConstants.DIA) != 0 )
             dpDataInicioPil.updateDate(getArguments().getInt(KeepConstants.ANO), getArguments().getInt(KeepConstants.MES),
                 getArguments().getInt(KeepConstants.DIA));
@@ -80,7 +87,9 @@ public class DataInicioFragment extends Fragment {
             public void onClick(View view) {
                 showFragmentCurrent(CicloFragment.newInstance(dpDataInicioPil.getDayOfMonth(),
                         dpDataInicioPil.getMonth(),
-                        dpDataInicioPil.getYear(), durCiclo, qtdeDiasMenstru));
+                        dpDataInicioPil.getYear(), durCiclo, qtdeDiasMenstru,
+                        getArguments().getString(KeepConstants.TELEFONE),
+                        getArguments().getString(KeepConstants.MSG_DEFAULT)));
             }
         });
 

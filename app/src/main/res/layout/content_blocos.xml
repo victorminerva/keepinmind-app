@@ -58,6 +58,14 @@
                 android:layout_weight="1"
                 android:clickable="false"
                 android:scaleType="centerInside" />
+
+            <ImageButton
+                android:id="@+id/tela_dados_seis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:scaleType="centerInside" />
         </TableRow>
     </TableLayout>
 

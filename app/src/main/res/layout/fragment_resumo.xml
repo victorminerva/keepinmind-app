@@ -9,6 +9,7 @@
         layout="@layout/content_blocos" />
 
     <ScrollView
+        android:id="@+id/scroll_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_blocos_welcome">
@@ -137,8 +138,77 @@
                     android:layout_height="2dp"
                     android:background="#aaaaaa" />
 
+                <TableRow
+                    android:id="@+id/tr4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtTel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtInfoCicloDur"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/telefone"
+                        android:textAllCaps="true"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/valueTel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:textSize="20dp" />
+
+                </TableRow>
+
+                <View
+                    android:id="@+id/fourDivider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#aaaaaa" />
+
+                <TableRow
+                    android:id="@+id/tr5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/txtMsg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtInfoCicloDur"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@string/msg_default"
+                        android:textAllCaps="true"
+                        android:textSize="15dp" />
+
+                </TableRow>
+
             </TableLayout>
 
+            <TextView
+                android:id="@+id/valueMsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="20dp" />
+
+            <View
+                android:id="@+id/fiveDivider"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="#aaaaaa" />
         </LinearLayout>
     </ScrollView>
 

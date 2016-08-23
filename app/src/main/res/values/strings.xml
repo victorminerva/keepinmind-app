@@ -72,6 +72,18 @@
     <string name="hora_do_anti">Horário do medicamento.</string>
     <string name="off">OFF</string>
     <string name="on">ON</string>
+    <string name="avisar_sua_parceira">Notifique sua parceira...</string>
+    <string name="enviar_msg_wpp">Enviar mensagem para o WhatsApp</string>
+    <string name="enviar_sms">Enviar um SMS</string>
+    <string name="ligar">Fazer uma ligação</string>
+    <string name="lembrete_title">Lembrete</string>
+    <string name="subtitle_lembrete">Este é uma alerta para você lembrar a sua parceira ingerir o medicamento.
+        Escolha uma das opções abaixo para comunica-la:</string>
+    <string name="informacoes_adicionais">Informações adicionais</string>
+    <string name="p_dados_parc">Estes dados são somente para comunicar sua parceira sobre o lembrete do medicamento.</string>
+    <string name="telefone">Telefone/WhatsApp:</string>
+    <string name="msg_padrao">Insira uma mensagem padrão:</string>
+    <string name="msg_default">Mensagem Padrão</string>
 
     <string-array name="values_ciclo">
         <item>21</item>

@@ -1,7 +1,6 @@
 package app.minervati.com.br.keepinmind.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,34 +8,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.NumberPicker;
 
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.util.KeepConstants;
 
-public class CicloFragment extends Fragment {
+public class DadosParceiraFragment extends Fragment {
 
-    private Button          buttonNext;
-    private Button          buttonBack;
-    private ImageButton     telaDadosTres;
-    private NumberPicker    npDurCiclo;
+    private Button      buttonNext;
+    private Button      buttonBack;
+    private ImageButton telaDadosCinco;
+    private EditText    mTelefone;
+    private EditText    mMsgDefault;
 
     private FragmentManager     fragManager;
     private FragmentTransaction fragmentTransaction;
 
-    private Integer qtdeDiasMenstru = 0;
-    private String  telefone        = "";
-    private String  msgDefault      = "";
-
-    public CicloFragment() {
+    public DadosParceiraFragment() {
         // Required empty public constructor
     }
 
-    public static CicloFragment newInstance(Integer dia, Integer mes, Integer ano,
-                                            Integer durCiclo, Integer qtdeDiasMesntr,
-                                            String telefone, String msgDefault) {
-        CicloFragment   fragment    = new CicloFragment();
+    public static DadosParceiraFragment newInstance(Integer dia, Integer mes, Integer ano,
+                                                    Integer durCiclo, Integer qtdeDiasMesntr,
+                                                    String telefone, String msgDefault) {
+        DadosParceiraFragment fragment = new DadosParceiraFragment();
         Bundle          bundle      = new Bundle();
 
         bundle.putInt(KeepConstants.DIA, dia);
@@ -60,53 +56,50 @@ public class CicloFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflate = inflater.inflate(R.layout.fragment_ciclo, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_dados_parceira, container, false);
         init(inflate);
+        telaDadosCinco.setPressed(Boolean.TRUE);
 
-        telaDadosTres.setPressed(Boolean.TRUE);
-        npDurCiclo.setMinValue(21);
-        npDurCiclo.setMaxValue(28);
+        if ( getArguments().getString(KeepConstants.TELEFONE) != "")
+            mTelefone.setText(getArguments().getString(KeepConstants.TELEFONE));
 
-        if( getArguments().getInt(KeepConstants.DUR_CICLO) != 1 )
-            npDurCiclo.setValue( getArguments().getInt(KeepConstants.DUR_CICLO) );
-
-        if ( getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU) != 0)
-            qtdeDiasMenstru = getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU);
+        if ( getArguments().getString(KeepConstants.MSG_DEFAULT) != "")
+            mMsgDefault.setText(getArguments().getString(KeepConstants.MSG_DEFAULT));
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(DataInicioFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
                         getArguments().getInt(KeepConstants.MES),
                         getArguments().getInt(KeepConstants.ANO),
-                        npDurCiclo.getValue(),
-                        qtdeDiasMenstru,
-                        getArguments().getString(KeepConstants.TELEFONE),
-                        getArguments().getString(KeepConstants.MSG_DEFAULT)));
+                        getArguments().getInt(KeepConstants.DUR_CICLO),
+                        getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU),
+                        String.valueOf(mTelefone.getText()),
+                        String.valueOf(mMsgDefault.getText())));
             }
         });
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showFragmentCurrent(QtdeDiasMenstruFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
+                showFragmentCurrent(ResumoFragment.newInstance(getArguments().getInt(KeepConstants.DIA),
                         getArguments().getInt(KeepConstants.MES),
                         getArguments().getInt(KeepConstants.ANO),
-                        npDurCiclo.getValue(),
-                        qtdeDiasMenstru,
-                        getArguments().getString(KeepConstants.TELEFONE),
-                        getArguments().getString(KeepConstants.MSG_DEFAULT)));
+                        getArguments().getInt(KeepConstants.DUR_CICLO),
+                        getArguments().getInt(KeepConstants.QTD_DIAS_MENSTRU), String.valueOf(mTelefone.getText()),
+                        String.valueOf(mMsgDefault.getText())));
             }
         });
 
         return inflate;
     }
 
-    private void init(View view){
-        buttonNext          = (Button) view.findViewById(R.id.btn_next);
-        buttonBack          = (Button) view.findViewById(R.id.btn_back);
-        telaDadosTres       = (ImageButton) view.findViewById(R.id.tela_dados_tres);
-        npDurCiclo          = (NumberPicker) view.findViewById(R.id.np_dur_ciclo);
+    private void init(View inflate) {
+        buttonNext      = (Button) inflate.findViewById(R.id.btn_next);
+        buttonBack      = (Button) inflate.findViewById(R.id.btn_back);
+        telaDadosCinco  = (ImageButton) inflate.findViewById(R.id.tela_dados_cinco);
+        mTelefone       = (EditText) inflate.findViewById(R.id.input_tel);
+        mMsgDefault     = (EditText) inflate.findViewById(R.id.input_msg_default);
 
         fragManager         = getFragmentManager();
         fragmentTransaction = fragManager.beginTransaction();
@@ -117,5 +110,4 @@ public class CicloFragment extends Fragment {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
-
 }

@@ -1,7 +1,11 @@
 package app.minervati.com.br.keepinmind.fragment;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -23,6 +27,7 @@ import java.util.Date;
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.domain.Lembrete;
 import app.minervati.com.br.keepinmind.util.KeepUtil;
+import app.minervati.com.br.keepinmind.util.NotifyReceiver;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -42,6 +47,9 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
     protected Lembrete                  lembrete;
     protected Realm                     realm;
     protected RealmResults<Lembrete>    realmLembretes;
+    protected Intent                    intent;
+    protected PendingIntent             pdgIntent;
+    protected AlarmManager              alarmMgr;
 
     public AlertsFragment() {
         // Required empty public constructor
@@ -67,7 +75,12 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         init(inflate);
 
         if (!KeepUtil.isNull(lembrete) && !KeepUtil.isNull(lembrete.getHora())){
-            calendar.set(0,0,0,lembrete.getHora(), lembrete.getMinuto(), 0);
+            calendar.set(
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH),
+                    lembrete.getHora(),
+                    lembrete.getMinuto(), 0);
             mToggleOnOff.setChecked(lembrete.getStatusLembrete());
         }
 
@@ -83,6 +96,8 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                 }
             }
         });
+
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
 
         return inflate;
     }
@@ -100,7 +115,14 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         activity        = getActivity();
         realm           = Realm.getInstance(activity);
         realmLembretes  = realm.where(Lembrete.class).findAll();
-        lembrete        = realmLembretes.where().equalTo("id", 1).findAll().get(0);
+        lembrete        = new Lembrete();
+        if (realmLembretes.size() > 0)
+            lembrete        = realmLembretes.where().equalTo("id", 1).findAll().get(0);
+
+        //START ALARM
+        intent          = new Intent(activity, NotifyReceiver.class);
+        pdgIntent       = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmMgr        = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
     }
 
     //Mostra um picker de data.

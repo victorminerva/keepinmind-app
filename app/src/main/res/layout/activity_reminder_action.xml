@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="app.minervati.com.br.keepinmind.ReminderActionActivity">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_pin_red_64" />
+
+    <TextView
+        android:id="@+id/title_lembrete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/lembrete_title"
+        android:textAllCaps="true"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/subtitle_lembrete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_lembrete"
+        android:layout_centerHorizontal="true"
+        android:text="@string/subtitle_lembrete"
+        android:textAllCaps="true"
+        android:textColor="@color/mdtp_date_picker_view_animator_dark_theme"
+        android:padding="@dimen/activity_horizontal_margin_nano"
+        android:textSize="12dp"
+        android:gravity="center"
+        android:textStyle="italic" />
+
+    <ListView
+        android:id="@+id/list_of_options"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/subtitle_lembrete"
+        android:layout_marginTop="20sp" />
+</RelativeLayout>

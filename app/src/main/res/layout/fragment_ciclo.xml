@@ -43,7 +43,6 @@
                 android:text="@string/p_ciclo_pil"
                 android:textSize="20dp" />
 
-
             <NumberPicker
                 android:id="@+id/np_dur_ciclo"
                 android:layout_width="match_parent"
