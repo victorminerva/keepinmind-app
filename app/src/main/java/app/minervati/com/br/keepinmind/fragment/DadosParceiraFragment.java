@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.util.KeepConstants;
+import app.minervati.com.br.keepinmind.util.MaskEditTextChangedListener;
 
 public class DadosParceiraFragment extends Fragment {
 
@@ -25,6 +26,8 @@ public class DadosParceiraFragment extends Fragment {
 
     private FragmentManager     fragManager;
     private FragmentTransaction fragmentTransaction;
+
+    private MaskEditTextChangedListener maskTEL;
 
     public DadosParceiraFragment() {
         // Required empty public constructor
@@ -102,10 +105,11 @@ public class DadosParceiraFragment extends Fragment {
         mTelefone       = (EditText) inflate.findViewById(R.id.input_tel);
         mMsgDefault     = (EditText) inflate.findViewById(R.id.input_msg_default);
 
-        //mTelefone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
         fragManager         = getFragmentManager();
         fragmentTransaction = fragManager.beginTransaction();
+
+        maskTEL = new MaskEditTextChangedListener("(##)#####-####", mTelefone);
+        mTelefone.addTextChangedListener(maskTEL);
     }
 
     private void showFragmentCurrent(Fragment fragment){

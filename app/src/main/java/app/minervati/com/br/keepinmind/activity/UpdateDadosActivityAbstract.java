@@ -14,6 +14,7 @@ import java.util.Calendar;
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.domain.InfoBasics;
 import app.minervati.com.br.keepinmind.util.KeepConstants;
+import app.minervati.com.br.keepinmind.util.MaskEditTextChangedListener;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -37,6 +38,8 @@ public class UpdateDadosActivityAbstract extends AppCompatActivity implements Da
     protected Calendar                  calendar;
     protected SimpleDateFormat          dateFormat;
 
+    protected MaskEditTextChangedListener maskTEL;
+
     protected DatePickerDialog          mDatePickerDialog;
 
     protected void init(){
@@ -53,6 +56,9 @@ public class UpdateDadosActivityAbstract extends AppCompatActivity implements Da
         infoBasics      = realmInfoBasics.where().equalTo("id", 1).findAll().get(0);
         calendar        = Calendar.getInstance();
         dateFormat      = new SimpleDateFormat("dd/MM/yyyy");
+
+        maskTEL = new MaskEditTextChangedListener("(##)#####-####", inputTel);
+        inputTel.addTextChangedListener(maskTEL);
     }
 
     //Mostra um picker de data.

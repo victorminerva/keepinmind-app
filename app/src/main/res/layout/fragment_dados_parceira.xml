@@ -116,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/telefone"
                         android:inputType="phone"
-                        android:maxLength="12"
+                        android:maxLength="14"
                         android:singleLine="true"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18dp" />
