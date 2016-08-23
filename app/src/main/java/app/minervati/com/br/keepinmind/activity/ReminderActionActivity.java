@@ -123,7 +123,7 @@ public class ReminderActionActivity extends AppCompatActivity {
         Uri uri = Uri.parse("smsto:" + sb.toString());
         Intent i = new Intent(Intent.ACTION_SENDTO, uri);
         i.setPackage("com.whatsapp");
-        startActivity(Intent.createChooser(i, infoBasics.getMsgDefault()));
+        startActivity(Intent.createChooser(i, infoBasics.getTelefone()));
     }
 
 }

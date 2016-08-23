@@ -84,8 +84,9 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                     lembrete.getMinuto(), 0);
             mToggleOnOff.setChecked(lembrete.getStatusLembrete());
 
+            System.out.println("OLHA A HORA-LA-LA " + Calendar.getInstance().getTime());
             if ( Calendar.getInstance().getTime().after(calendar.getTime()) )
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DATE, 1);
 
             if (lembrete.getStatusLembrete())
                 alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
@@ -163,7 +164,7 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         salvaHorarioMedicamento(hourOfDay, minute);
 
         if ( Calendar.getInstance().getTime().after(calendar.getTime()) )
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            calendar.add(Calendar.DATE, 1);
 
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
     }

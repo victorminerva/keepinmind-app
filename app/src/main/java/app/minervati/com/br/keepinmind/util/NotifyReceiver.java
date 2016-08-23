@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
@@ -33,6 +34,7 @@ public class NotifyReceiver extends BroadcastReceiver {
 
         NotificationCompat.Builder mNotifyBuilder = new NotificationCompat.Builder(context);
         mNotifyBuilder.setSmallIcon(R.drawable.ic_tab_clock_alert);
+        mNotifyBuilder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_cartela_pill));
         mNotifyBuilder.setTicker("Alerta diária do medicamento.");
         mNotifyBuilder.setContentTitle("Opa! Hora de lembrar sua parceira.");
         mNotifyBuilder.setContentText("Notifique-a, não deixe para depois!");
