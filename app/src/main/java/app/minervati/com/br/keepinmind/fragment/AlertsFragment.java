@@ -82,6 +82,7 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                     lembrete.getHora(),
                     lembrete.getMinuto(), 0);
             mToggleOnOff.setChecked(lembrete.getStatusLembrete());
+            //alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
         }
 
         mHoraAnti.setText(sdf.format(calendar.getTime()));
@@ -93,11 +94,11 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                     timeDialog(calendar).show(activity.getFragmentManager(), "TimePicker");
                 } else {
                     alteraStatusMedicamento(lembrete.getHora(), lembrete.getMinuto(), false);
+                    //alarmMgr.cancel(pdgIntent);
                 }
             }
         });
 
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
 
         return inflate;
     }
@@ -120,9 +121,9 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
             lembrete        = realmLembretes.where().equalTo("id", 1).findAll().get(0);
 
         //START ALARM
-        intent          = new Intent(activity, NotifyReceiver.class);
-        pdgIntent       = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmMgr        = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
+//        intent          = new Intent(activity, NotifyReceiver.class);
+//        pdgIntent       = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        alarmMgr        = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
     }
 
     //Mostra um picker de data.
@@ -145,10 +146,16 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        calendar.set(0,0,0,hourOfDay, minute, second);
+        calendar.set(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH),
+                hourOfDay, minute, second);
         mHoraAnti.setText( sdf.format(calendar.getTime()) );
 
         salvaHorarioMedicamento(hourOfDay, minute);
+
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
     }
 
     private void salvaHorarioMedicamento(Integer hourOfDay, Integer minute) {

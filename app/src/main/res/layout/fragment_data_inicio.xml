@@ -1,55 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.minervati.com.br.keepinmind.fragment.BemVindoFragment">
+    tools:context="app.minervati.com.br.keepinmind.fragment.StartPillFragment">
 
-    <include
-        android:id="@+id/layout_blocos_welcome"
-        layout="@layout/content_blocos" />
-
-    <ScrollView
+    <!-- Header aligned to top -->
+    <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_blocos_welcome">
+        android:layout_alignParentTop="true"
+        android:gravity="center">
 
-        <LinearLayout
+        <include
+            android:id="@+id/layout_blocos_welcome"
+            layout="@layout/content_blocos" />
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <View
+            android:id="@+id/firstDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="#aaaaaa" />
+
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
+            android:layout_below="@id/firstDivider">
 
+            <TableRow
+                android:id="@+id/tr1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/data_inicio_pil"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/common_40_dp" />
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/anterior"
+                    android:textAllCaps="true"
+                    android:textSize="15dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/p_data_inicio_pil"
-                android:textSize="20dp" />
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/proximo"
+                    android:textAllCaps="true"
+                    android:textSize="20dp" />
 
-            <DatePicker
-                android:id="@+id/data_inicio_pil"
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <!-- Content below header and above footer -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin_normal"
-                android:calendarTextColor="@color/colorPrimary"
-                android:calendarViewShown="true"
-                android:datePickerMode="calendar" />
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
-        </LinearLayout>
-    </ScrollView>
 
-    <include
-        android:id="@+id/layoutBotoesData"
-        layout="@layout/content_botoes_back_next" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/data_inicio_pil"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/common_40_dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/p_data_inicio_pil"
+                    android:textSize="20dp" />
+
+                <DatePicker
+                    android:id="@+id/data_inicio_pil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin_normal"
+                    android:calendarTextColor="@color/colorPrimary"
+                    android:calendarViewShown="true"
+                    android:datePickerMode="calendar" />
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
 </RelativeLayout>

@@ -4,215 +4,277 @@
     android:layout_height="match_parent"
     tools:context="app.minervati.com.br.keepinmind.fragment.ResumoFragment">
 
-    <include
-        android:id="@+id/layout_blocos_welcome"
-        layout="@layout/content_blocos" />
-
-    <ScrollView
-        android:id="@+id/scroll_page"
+    <!-- Header aligned to top -->
+    <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_blocos_welcome">
+        android:layout_alignParentTop="true"
+        android:gravity="center">
 
-        <LinearLayout
+        <include
+            android:id="@+id/layout_blocos_welcome"
+            layout="@layout/content_blocos" />
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <View
+            android:id="@+id/firstDivider_"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="#aaaaaa" />
+
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
+            android:layout_below="@id/firstDivider_">
 
-            <TextView
-                android:id="@+id/txtRev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="0dp"
-                android:text="@string/t_revisao"
-                android:textSize="40dp" />
+            <TableRow
+                android:id="@+id/tr1_"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TableLayout
-                android:id="@+id/listDadosInfo"
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/anterior"
+                    android:textAllCaps="true"
+                    android:textSize="15dp" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/proximo"
+                    android:textAllCaps="true"
+                    android:textSize="20dp" />
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <!-- Content below header and above footer -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header">
+
+        <ScrollView
+            android:id="@+id/scroll_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtRev">
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
-                <TableRow
-                    android:id="@+id/tr1"
+                <TextView
+                    android:id="@+id/txtRev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/t_revisao"
+                    android:textSize="40dp" />
+
+                <TableLayout
+                    android:id="@+id/listDadosInfo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtRev">
 
-                    <TextView
-                        android:id="@+id/txtData"
+                    <TableRow
+                        android:id="@+id/tr1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txtInfoCicloDur"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/txt_data_inicio"
-                        android:textAllCaps="true"
-                        android:textSize="15dp" />
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/valueData"
+                        <TextView
+                            android:id="@+id/txtData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtInfoCicloDur"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="@string/txt_data_inicio"
+                            android:textAllCaps="true"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/valueData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:textSize="20dp" />
+
+                    </TableRow>
+
+                    <View
+                        android:id="@+id/firstDivider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="#aaaaaa" />
+
+                    <TableRow
+                        android:id="@+id/tr2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:textSize="20dp" />
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1">
 
-                </TableRow>
+                        <TextView
+                            android:id="@+id/txtCiclo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="@string/txt_compri_ciclo"
+                            android:textAllCaps="true"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/valueCiclo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:textSize="20dp" />
+
+                    </TableRow>
+
+                    <View
+                        android:id="@+id/secondDivider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="#aaaaaa" />
+
+                    <TableRow
+                        android:id="@+id/tr3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtMens"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtInfoCicloDur"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="@string/txt_duracao_mesntru"
+                            android:textAllCaps="true"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/valueMens"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:textSize="20dp" />
+
+                    </TableRow>
+
+                    <View
+                        android:id="@+id/thirtyDivider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="#aaaaaa" />
+
+                    <TableRow
+                        android:id="@+id/tr4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtTel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtInfoCicloDur"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="@string/telefone"
+                            android:textAllCaps="true"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/valueTel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:textSize="20dp" />
+
+                    </TableRow>
+
+                    <View
+                        android:id="@+id/fourDivider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:background="#aaaaaa" />
+
+                    <TableRow
+                        android:id="@+id/tr5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txtMsg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/txtInfoCicloDur"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:text="@string/msg_default"
+                            android:textAllCaps="true"
+                            android:textSize="15dp" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/valueMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:textSize="20dp" />
 
                 <View
-                    android:id="@+id/firstDivider"
+                    android:id="@+id/fiveDivider"
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
+                    android:layout_marginBottom="10dp"
                     android:background="#aaaaaa" />
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
-                <TableRow
-                    android:id="@+id/tr2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/txtCiclo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/txt_compri_ciclo"
-                        android:textAllCaps="true"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/valueCiclo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:textSize="20dp" />
-
-                </TableRow>
-
-                <View
-                    android:id="@+id/secondDivider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:background="#aaaaaa" />
-
-                <TableRow
-                    android:id="@+id/tr3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/txtMens"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txtInfoCicloDur"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/txt_duracao_mesntru"
-                        android:textAllCaps="true"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/valueMens"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:textSize="20dp" />
-
-                </TableRow>
-
-                <View
-                    android:id="@+id/thirtyDivider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:background="#aaaaaa" />
-
-                <TableRow
-                    android:id="@+id/tr4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/txtTel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txtInfoCicloDur"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/telefone"
-                        android:textAllCaps="true"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/valueTel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:textSize="20dp" />
-
-                </TableRow>
-
-                <View
-                    android:id="@+id/fourDivider"
-                    android:layout_width="wrap_content"
-                    android:layout_height="2dp"
-                    android:background="#aaaaaa" />
-
-                <TableRow
-                    android:id="@+id/tr5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/txtMsg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txtInfoCicloDur"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/msg_default"
-                        android:textAllCaps="true"
-                        android:textSize="15dp" />
-
-                </TableRow>
-
-            </TableLayout>
-
-            <TextView
-                android:id="@+id/valueMsg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="20dp" />
-
-            <View
-                android:id="@+id/fiveDivider"
-                android:layout_width="wrap_content"
-                android:layout_height="2dp"
-                android:background="#aaaaaa" />
-        </LinearLayout>
-    </ScrollView>
-
-    <include
-        android:id="@+id/layoutBotoesData"
-        layout="@layout/content_botoes_back_next" />
 </RelativeLayout>

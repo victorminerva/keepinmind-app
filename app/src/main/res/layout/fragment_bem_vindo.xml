@@ -4,65 +4,26 @@
     android:layout_height="match_parent"
     tools:context="app.minervati.com.br.keepinmind.fragment.BemVindoFragment">
 
-
-    <include
-        android:id="@+id/layout_blocos_welcome"
-        layout="@layout/content_blocos" />
-
-    <ScrollView
-        android:id="@+id/scroll_page"
+    <!-- Header aligned to top -->
+    <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layout_blocos_welcome">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
+        <include
+            android:id="@+id/layout_blocos_welcome"
+            layout="@layout/content_blocos" />
+    </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bem_vindo"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/common_40_dp" />
-
-            <TextView
-                android:id="@+id/txtInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin_normal"
-                android:text="@string/txt_info"
-                android:textSize="@dimen/common_20_dp" />
-
-            <TextView
-                android:id="@+id/txtTermo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin_normal"
-                android:text="@string/txt_termo"
-                android:textAllCaps="true"
-                android:textSize="@dimen/common_15_dp" />
-
-            <TextView
-                android:id="@+id/txtInfoTermo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin_normal"
-                android:text="@string/txt_info_termo"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <LinearLayout
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:gravity="bottom"
-        android:orientation="vertical">
+        android:gravity="center">
 
         <View
             android:layout_width="match_parent"
@@ -73,14 +34,70 @@
             android:id="@+id/btn_concordo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin_normal"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:gravity="center"
             android:text="@string/concordo"
             android:textAllCaps="true"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textSize="@dimen/common_20_dp" />
-    </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Content below header and above footer -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center">
+
+        <ScrollView
+            android:id="@+id/scroll_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bem_vindo"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/common_40_dp" />
+
+                <TextView
+                    android:id="@+id/txtInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin_normal"
+                    android:text="@string/txt_info"
+                    android:textSize="@dimen/common_20_dp" />
+
+                <TextView
+                    android:id="@+id/txtTermo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin_normal"
+                    android:text="@string/txt_termo"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/common_15_dp" />
+
+                <TextView
+                    android:id="@+id/txtInfoTermo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin_normal"
+                    android:text="@string/txt_info_termo"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

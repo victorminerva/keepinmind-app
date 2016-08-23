@@ -1,59 +1,118 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="app.minervati.com.br.keepinmind.fragment.CicloFragment">
 
-    <include
-        android:id="@+id/layout_blocos_welcome"
-        layout="@layout/content_blocos" />
-
-    <ScrollView
-        android:id="@+id/scroll_page"
+    <!-- Header aligned to top -->
+    <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layout_blocos_welcome">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
 
-        <LinearLayout
+        <include
+            android:id="@+id/layout_blocos_welcome"
+            layout="@layout/content_blocos" />
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <View
+            android:id="@+id/firstDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="#aaaaaa" />
+
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/firstDivider">
 
-            <TextView
-                android:id="@+id/txtCicloDur"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="0dp"
-                android:text="@string/t_duracao_ciclo"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="40dp" />
+            <TableRow
+                android:id="@+id/tr1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtInfoCicloDur"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtCicloDur"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/p_ciclo_pil"
-                android:textSize="20dp" />
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/anterior"
+                    android:textAllCaps="true"
+                    android:textSize="15dp" />
 
-            <NumberPicker
-                android:id="@+id/np_dur_ciclo"
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/proximo"
+                    android:textAllCaps="true"
+                    android:textSize="20dp" />
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <!-- Content below header and above footer -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center">
+
+        <ScrollView
+            android:id="@+id/scroll_page"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                />
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/txtCicloDur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/t_duracao_ciclo"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40dp" />
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/txtInfoCicloDur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtCicloDur"
+                    android:layout_margin="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/p_ciclo_pil"
+                    android:textSize="20dp" />
 
-    <include
-        android:id="@+id/layoutBotoesData"
-        layout="@layout/content_botoes_back_next" />
+                <NumberPicker
+                    android:id="@+id/np_dur_ciclo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
 </RelativeLayout>

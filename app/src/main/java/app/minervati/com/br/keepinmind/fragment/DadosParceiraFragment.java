@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +101,8 @@ public class DadosParceiraFragment extends Fragment {
         telaDadosCinco  = (ImageButton) inflate.findViewById(R.id.tela_dados_cinco);
         mTelefone       = (EditText) inflate.findViewById(R.id.input_tel);
         mMsgDefault     = (EditText) inflate.findViewById(R.id.input_msg_default);
+
+        //mTelefone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         fragManager         = getFragmentManager();
         fragmentTransaction = fragManager.beginTransaction();
