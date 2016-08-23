@@ -51,17 +51,17 @@ public class ReminderActionActivity extends AppCompatActivity {
                 try {
                     switch (position) {
                         case 0:
-                            enviaMsgToWhatsApp();
                             message = "Redirecionando para o whatsapp..";
+                            enviaMsgToWhatsApp();
                             break;
                         case 1:
-                            smsManager.sendTextMessage(infoBasics.getTelefone(), null, infoBasics.getMsgDefault(), null, null);
                             message = "SMS enviado com sucesso!";
+                            smsManager.sendTextMessage(infoBasics.getTelefone(), null, infoBasics.getMsgDefault(), null, null);
                             finish();
                             break;
                         case 2:
-                            if (realizaLigacao()) return;
                             message = "Redirecionando para ligação..";
+                            if (realizaLigacao()) return;
                             break;
                         default:
                             break;
@@ -69,6 +69,7 @@ public class ReminderActionActivity extends AppCompatActivity {
                     Toast.makeText(ReminderActionActivity.this,
                             message,
                             Toast.LENGTH_SHORT).show();
+                    finish();
                 } catch(Exception e) {
                     e.printStackTrace();
                     Toast.makeText(ReminderActionActivity.this,
