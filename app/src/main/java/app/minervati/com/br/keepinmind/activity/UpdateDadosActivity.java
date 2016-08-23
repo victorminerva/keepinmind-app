@@ -36,6 +36,9 @@ public class UpdateDadosActivity extends UpdateDadosActivityAbstract {
 
         duracaoCiclo.setSelectedItem(infoBasics.getDuracaoCiclo()-21);
         duracaoMenstrual.setSelectedItem(infoBasics.getQtdeDiasMenstru()-1);
+
+        inputTel.setText(String.valueOf(infoBasics.getTelefone()));
+        inputMsg.setText(String.valueOf(infoBasics.getMsgDefault()));
     }
 
     @Override

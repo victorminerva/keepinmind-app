@@ -27,6 +27,8 @@ public class UpdateDadosActivityAbstract extends AppCompatActivity implements Da
     protected EditText                  inputData;
     protected HorizontalPicker          duracaoCiclo;
     protected HorizontalPicker          duracaoMenstrual;
+    protected EditText                  inputTel;
+    protected EditText                  inputMsg;
 
     protected Realm                     realm;
     protected RealmResults<InfoBasics>  realmInfoBasics;
@@ -43,6 +45,8 @@ public class UpdateDadosActivityAbstract extends AppCompatActivity implements Da
         inputData           = (EditText) findViewById(R.id.input_data);
         duracaoCiclo        = (HorizontalPicker) findViewById(R.id.duracao_ciclo);
         duracaoMenstrual    = (HorizontalPicker) findViewById(R.id.duracao_menstrual);
+        inputTel            = (EditText) findViewById(R.id.input_tel);
+        inputMsg            = (EditText) findViewById(R.id.input_msg_default);
 
         realm           = Realm.getInstance(this);
         realmInfoBasics = realm.where(InfoBasics.class).findAll();
@@ -78,19 +82,24 @@ public class UpdateDadosActivityAbstract extends AppCompatActivity implements Da
         infoBasics.setDuracaoCiclo(duracaoCiclo.getSelectedItem()+21);
         infoBasics.setQtdeDiasMenstru(duracaoMenstrual.getSelectedItem()+1);
 
+        infoBasics.setTelefone(String.valueOf(inputTel.getText()));
+        infoBasics.setMsgDefault(String.valueOf(inputMsg.getText()));
+
         return infoBasics;
     }
 
     protected void updateDados(InfoBasics infoBasics){
         realm.beginTransaction();
         preencheDados();
-        infoBasics.setId(infoBasics.getId());
-        infoBasics.setDia(infoBasics.getDia());
-        infoBasics.setMes(infoBasics.getMes());
-        infoBasics.setAno(infoBasics.getAno());
-        infoBasics.setDuracaoCiclo(infoBasics.getDuracaoCiclo());
-        infoBasics.setQtdeDiasMenstru(infoBasics.getQtdeDiasMenstru());
-        realm.copyToRealmOrUpdate(infoBasics);
+        this.infoBasics.setId(infoBasics.getId());
+        this.infoBasics.setDia(infoBasics.getDia());
+        this.infoBasics.setMes(infoBasics.getMes());
+        this.infoBasics.setAno(infoBasics.getAno());
+        this.infoBasics.setDuracaoCiclo(infoBasics.getDuracaoCiclo());
+        this.infoBasics.setQtdeDiasMenstru(infoBasics.getQtdeDiasMenstru());
+        this.infoBasics.setTelefone(infoBasics.getTelefone());
+        this.infoBasics.setMsgDefault(infoBasics.getMsgDefault());
+        realm.copyToRealmOrUpdate(this.infoBasics);
         realm.commitTransaction();
     }
 }
