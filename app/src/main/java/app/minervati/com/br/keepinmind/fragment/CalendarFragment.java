@@ -45,8 +45,8 @@ public class CalendarFragment extends CalendarFragmentAbstract {
         /**
          * Add evento durante o anticoncepcional
          */
-        addEventsDiasBaixoRisco();
         addEventsDiasMedioRisco();
+        addEventsDiasBaixoRisco();
         addEventsDiasTPM();
 
         /**
