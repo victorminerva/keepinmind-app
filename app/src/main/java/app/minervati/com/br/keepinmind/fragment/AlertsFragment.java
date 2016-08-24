@@ -1,16 +1,12 @@
 package app.minervati.com.br.keepinmind.fragment;
 
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +22,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import app.minervati.com.br.keepinmind.R;
+import app.minervati.com.br.keepinmind.domain.InfoBasics;
 import app.minervati.com.br.keepinmind.domain.Lembrete;
 import app.minervati.com.br.keepinmind.util.KeepUtil;
-import app.minervati.com.br.keepinmind.util.NotifyReceiver;
+import app.minervati.com.br.keepinmind.util.ReceptorBoot;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -48,9 +45,6 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
     protected Lembrete                  lembrete;
     protected Realm                     realm;
     protected RealmResults<Lembrete>    realmLembretes;
-    protected Intent                    intent;
-    protected PendingIntent             pdgIntent;
-    protected AlarmManager              alarmMgr;
 
     public AlertsFragment() {
         // Required empty public constructor
@@ -84,12 +78,8 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                     lembrete.getMinuto(), 0);
             mToggleOnOff.setChecked(lembrete.getStatusLembrete());
 
-            System.out.println("OLHA A HORA-LA-LA " + Calendar.getInstance().getTime());
             if ( Calendar.getInstance().getTime().after(calendar.getTime()) )
                 calendar.add(Calendar.DATE, 1);
-
-            if (lembrete.getStatusLembrete())
-                alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
         }
 
         mHoraAnti.setText(sdf.format(calendar.getTime()));
@@ -101,7 +91,7 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                     timeDialog(calendar).show(activity.getFragmentManager(), "TimePicker");
                 } else {
                     alteraStatusMedicamento(lembrete.getHora(), lembrete.getMinuto(), false);
-                    //alarmMgr.cancel(pdgIntent);
+                    ReceptorBoot.cancelarAlarme(activity);
                 }
             }
         });
@@ -118,20 +108,14 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
 
         sdf             = new SimpleDateFormat("HH:mm");
         calendar        = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
 
         activity        = getActivity();
         realm           = Realm.getInstance(activity);
         realmLembretes  = realm.where(Lembrete.class).findAll();
+
         lembrete        = new Lembrete();
         if (realmLembretes.size() > 0)
             lembrete        = realmLembretes.where().equalTo("id", 1).findAll().get(0);
-
-        //START ALARM
-        intent          = new Intent(activity, NotifyReceiver.class);
-        pdgIntent       = PendingIntent.getBroadcast(activity, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmMgr        = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
-        //alarmMgr.setTime(calendar.getTimeInMillis());
     }
 
     //Mostra um picker de data.
@@ -154,19 +138,17 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-        calendar.set(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH),
-                hourOfDay, minute, second);
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
         mHoraAnti.setText( sdf.format(calendar.getTime()) );
 
         salvaHorarioMedicamento(hourOfDay, minute);
 
-        if ( Calendar.getInstance().getTime().after(calendar.getTime()) )
-            calendar.add(Calendar.DATE, 1);
-
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pdgIntent);
+        //START ALARM
+        ReceptorBoot.configurarAlarme(activity);
     }
 
     private void salvaHorarioMedicamento(Integer hourOfDay, Integer minute) {
@@ -188,4 +170,5 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         realm.copyToRealmOrUpdate(lembrete);
         realm.commitTransaction();
     }
+
 }

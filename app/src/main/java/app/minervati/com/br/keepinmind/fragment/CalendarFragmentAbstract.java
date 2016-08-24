@@ -74,7 +74,7 @@ public class CalendarFragmentAbstract extends Fragment {
     }
 
     protected void addEventsDiasTPM() {
-        for (int i=1; i < infoBasics.getDuracaoCiclo()-21; i++ ) {
+        for (int i=1; i < 3; i++ ) {
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_TPM.getValue());
         }

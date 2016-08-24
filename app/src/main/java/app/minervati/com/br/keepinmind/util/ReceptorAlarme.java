@@ -13,13 +13,15 @@ import android.support.v7.app.NotificationCompat;
 import app.minervati.com.br.keepinmind.R;
 import app.minervati.com.br.keepinmind.activity.ReminderActionActivity;
 
-public class NotifyReceiver extends BroadcastReceiver {
+/**
+ * Created by victorminerva on 24/08/2016.
+ */
+public class ReceptorAlarme extends BroadcastReceiver {
 
     int MID = 0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         Long when = System.currentTimeMillis();
 
         NotificationManager notificationManager = (NotificationManager) context
@@ -47,5 +49,6 @@ public class NotifyReceiver extends BroadcastReceiver {
         notificationManager.notify(MID, mNotifyBuilder.build());
 
         MID++;
+
     }
 }

@@ -118,12 +118,20 @@ public class ReminderActionActivity extends AppCompatActivity {
     }
 
     private void enviaMsgToWhatsApp() {
-        StringBuffer sb = new StringBuffer(infoBasics.getTelefone());
+        Intent i = new Intent(Intent.ACTION_VIEW)
+                .setData(Uri.parse("content://com.android.contacts/data/" +
+                        infoBasics.getTelefone()+ "@s.whatsapp.net"));
+        i.setPackage("com.whatsapp");
+        startActivity(i);
+
+
+       /* StringBuffer sb = new StringBuffer(infoBasics.getTelefone());
         sb.setCharAt(2, ' ');
         Uri uri = Uri.parse("smsto:" + sb.toString());
         Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+        i.putExtra("sms_body", infoBasics.getTelefone());
         i.setPackage("com.whatsapp");
-        startActivity(Intent.createChooser(i, infoBasics.getTelefone()));
+        startActivity(Intent.createChooser(i, infoBasics.getTelefone()));*/
     }
 
 }

@@ -59,7 +59,12 @@ public class CalendarFragment extends CalendarFragmentAbstract {
             /**
              * Add evento reinicio do anticoncepcional
              */
-            calendar.add(Calendar.DATE, infoBasics.getQtdeDiasMenstru() + 1);
+            if (infoBasics.getQtdeDiasMenstru() == 1 && infoBasics.getDuracaoCiclo() == 28)
+                calendar.add(Calendar.DATE, 1);
+            else
+                calendar.add(Calendar.DATE, infoBasics.getQtdeDiasMenstru() + 1);
+
+
             events.put(calendar.getTime(), IconReminderEnum.DAY_START.getValue());
 
             /**
