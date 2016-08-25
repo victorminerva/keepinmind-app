@@ -3,6 +3,7 @@ package app.minervati.com.br.keepinmind.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
@@ -118,20 +119,15 @@ public class ReminderActionActivity extends AppCompatActivity {
     }
 
     private void enviaMsgToWhatsApp() {
-        Intent i = new Intent(Intent.ACTION_VIEW)
-                .setData(Uri.parse("content://com.android.contacts/data/" +
-                        infoBasics.getTelefone()+ "@s.whatsapp.net"));
-        i.setPackage("com.whatsapp");
-        startActivity(i);
-
-
-       /* StringBuffer sb = new StringBuffer(infoBasics.getTelefone());
-        sb.setCharAt(2, ' ');
+        StringBuffer sb = new StringBuffer(infoBasics.getTelefone());
+        sb.setCharAt(4, ' ');
         Uri uri = Uri.parse("smsto:" + sb.toString());
-        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-        i.putExtra("sms_body", infoBasics.getTelefone());
-        i.setPackage("com.whatsapp");
-        startActivity(Intent.createChooser(i, infoBasics.getTelefone()));*/
+
+        Intent whatsapp = new Intent(Intent.ACTION_SENDTO, uri);
+        whatsapp.putExtra(Intent.EXTRA_TEXT, infoBasics.getMsgDefault());
+        whatsapp.putExtra("sms_body", infoBasics.getMsgDefault());
+        whatsapp.setPackage("com.whatsapp");
+        startActivity(whatsapp);
     }
 
 }
