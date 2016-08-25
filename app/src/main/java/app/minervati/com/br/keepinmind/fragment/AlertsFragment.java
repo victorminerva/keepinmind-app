@@ -75,7 +75,9 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH),
                     lembrete.getHora(),
-                    lembrete.getMinuto(), 0);
+                    lembrete.getMinuto(),
+                    0);
+
             mToggleOnOff.setChecked(lembrete.getStatusLembrete());
 
             if ( Calendar.getInstance().getTime().after(calendar.getTime()) )

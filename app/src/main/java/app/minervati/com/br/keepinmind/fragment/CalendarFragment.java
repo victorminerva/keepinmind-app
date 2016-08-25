@@ -41,7 +41,7 @@ public class CalendarFragment extends CalendarFragmentAbstract {
          */
         calendar.set(infoBasics.getAno(), infoBasics.getMes(), infoBasics.getDia());
         events.put(calendar.getTime(), IconReminderEnum.DAY_START.getValue());
-
+        setAlarme(calendar.getTime(), IconReminderEnum.DAY_START.getValue());
         /**
          * Add evento durante o anticoncepcional
          */
@@ -54,6 +54,7 @@ public class CalendarFragment extends CalendarFragmentAbstract {
          */
         calendar.add(Calendar.DATE, 1);
         events.put(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
+        setAlarme(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
 
         for (int i = 0; i <= 12; i++) {
             /**
@@ -66,7 +67,7 @@ public class CalendarFragment extends CalendarFragmentAbstract {
 
 
             events.put(calendar.getTime(), IconReminderEnum.DAY_START.getValue());
-
+            setAlarme(calendar.getTime(), IconReminderEnum.DAY_START.getValue());
             /**
              * Add evento durante o anticoncepcional
              */
@@ -79,6 +80,7 @@ public class CalendarFragment extends CalendarFragmentAbstract {
              */
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
+            setAlarme(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
         }
 
         calendarView.updateCalendar(events);

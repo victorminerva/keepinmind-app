@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import app.minervati.com.br.keepinmind.domain.InfoBasics;
 import app.minervati.com.br.keepinmind.domain.Lembrete;
@@ -19,10 +20,8 @@ import io.realm.RealmResults;
 public class ReceptorBoot extends BroadcastReceiver {
 
     protected static Lembrete                  lembrete;
-    protected static InfoBasics                infoBasics;
     protected static Realm                     realm;
     protected static RealmResults<Lembrete>    realmLembretes;
-    protected static RealmResults<InfoBasics>  realmInfoBasics;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -53,8 +52,6 @@ public class ReceptorBoot extends BroadcastReceiver {
     private static void init(Context context) {
         realm           = Realm.getInstance(context);
         realmLembretes  = realm.where(Lembrete.class).findAll();
-        realmInfoBasics = realm.where(InfoBasics.class).findAll();
-        infoBasics      = realmInfoBasics.where().equalTo("id", 1).findAll().get(0);
 
         lembrete        = new Lembrete();
         if (realmLembretes.size() > 0)

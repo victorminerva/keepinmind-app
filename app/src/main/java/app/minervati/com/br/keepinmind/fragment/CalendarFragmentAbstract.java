@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import app.minervati.com.br.keepinmind.R;
+import app.minervati.com.br.keepinmind.domain.Alarme;
 import app.minervati.com.br.keepinmind.domain.IconReminderEnum;
 import app.minervati.com.br.keepinmind.domain.InfoBasics;
 import app.minervati.com.br.keepinmind.util.CalendarView;
@@ -26,6 +27,7 @@ public class CalendarFragmentAbstract extends Fragment {
 
     protected Realm                     realm;
     protected RealmResults<InfoBasics>  realmInfoBasics;
+    protected RealmResults<Alarme>      realmAlarms;
 
     protected InfoBasics                infoBasics;
     protected Calendar                  calendar;
@@ -47,6 +49,14 @@ public class CalendarFragmentAbstract extends Fragment {
 
         realm           = Realm.getInstance(getActivity());
         realmInfoBasics = realm.where(InfoBasics.class).findAll();
+        realmAlarms     = realm.where(Alarme.class).findAll();
+
+        if (realmAlarms.size() > 0){
+            realm.beginTransaction();
+            RealmResults<Alarme> all = realmAlarms.where().findAll();
+            all.clear();
+            realm.commitTransaction();
+        }
 
         infoBasics      = realmInfoBasics.where().equalTo("id", 1).findAll().get(0);
 
@@ -63,6 +73,7 @@ public class CalendarFragmentAbstract extends Fragment {
         for (int i=1; i < infoBasics.getDuracaoCiclo()-11; i++ ){
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_LOW_RISK.getValue());
+            //setAlarme(calendar.getTime(), IconReminderEnum.DAY_LOW_RISK.getValue());
         }
     }
 
@@ -70,6 +81,7 @@ public class CalendarFragmentAbstract extends Fragment {
         for (int i=1; i < infoBasics.getDuracaoCiclo()-15; i++ ){
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_MID_RISK.getValue());
+            //setAlarme(calendar.getTime(), IconReminderEnum.DAY_MID_RISK.getValue());
         }
     }
 
@@ -77,6 +89,7 @@ public class CalendarFragmentAbstract extends Fragment {
         for (int i=1; i < 3; i++ ) {
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_TPM.getValue());
+            //setAlarme(calendar.getTime(), IconReminderEnum.DAY_TPM.getValue());
         }
     }
 
@@ -87,5 +100,23 @@ public class CalendarFragmentAbstract extends Fragment {
             }
         }
         return value;
+    }
+
+    protected Alarme setAlarme(Date data, Integer tipoLembrete) {
+        Alarme alarm = new Alarme();
+        try{
+            realm.beginTransaction();
+            realmAlarms.sort("id", RealmResults.SORT_ORDER_DESCENDING);
+            long id = realmAlarms.size() == 0 ? 1 : realmAlarms.get(0).getId() + 1;
+            alarm.setId(id);
+            alarm.setData(data);
+            alarm.setTipoLembrete(tipoLembrete);
+
+            realm.copyToRealmOrUpdate(alarm);
+            realm.commitTransaction();
+        }catch (Exception e){
+            System.out.println("Erro ao inserir alarme!" + e.getMessage());
+        }
+        return alarm;
     }
 }
