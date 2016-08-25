@@ -81,7 +81,7 @@
         Escolha uma das opções abaixo para comunica-la:</string>
     <string name="informacoes_adicionais">Informações adicionais</string>
     <string name="p_dados_parc">Estes dados são somente para comunicar sua parceira sobre o lembrete do medicamento.</string>
-    <string name="telefone">Telefone/WhatsApp:</string>
+    <string name="telefone">Telefone da parceira:</string>
     <string name="msg_padrao">Insira uma mensagem padrão:</string>
     <string name="msg_default">Mensagem Padrão</string>
 
