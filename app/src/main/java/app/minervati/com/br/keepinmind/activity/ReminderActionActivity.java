@@ -123,10 +123,10 @@ public class ReminderActionActivity extends AppCompatActivity {
         sb.setCharAt(4, ' ');
         Uri uri = Uri.parse("smsto:" + sb.toString());
 
-        Intent whatsapp = new Intent(Intent.ACTION_SENDTO, uri);
+        Intent whatsapp = new Intent(Intent.ACTION_SEND);
         whatsapp.putExtra(Intent.EXTRA_TEXT, infoBasics.getMsgDefault());
-        whatsapp.putExtra("sms_body", infoBasics.getMsgDefault());
         whatsapp.setPackage("com.whatsapp");
+        whatsapp.setType("text/plain");
         startActivity(whatsapp);
     }
 
