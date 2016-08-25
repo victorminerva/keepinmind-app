@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <!--
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_reminder"
         android:layout_width="match_parent"
@@ -68,5 +69,5 @@
         android:layout_margin="@dimen/activity_vertical_margin_normal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
-
+    -->
 </LinearLayout>

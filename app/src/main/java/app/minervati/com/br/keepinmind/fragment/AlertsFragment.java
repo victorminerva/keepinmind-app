@@ -106,7 +106,7 @@ public class AlertsFragment extends Fragment implements TimePickerDialog.OnTimeS
         mHoraAnti       = (TextView) view.findViewById(R.id.tv_hora_anti);
         mToggleOnOff    = (ToggleButton) view.findViewById(R.id.toggle_sim_nao);
         listReminder    = (RecyclerView) view.findViewById(R.id.list_item_reminder);
-        fabAddLembrete  = (FloatingActionButton) view.findViewById(R.id.fab_add_reminder);
+        //fabAddLembrete  = (FloatingActionButton) view.findViewById(R.id.fab_add_reminder);
 
         sdf             = new SimpleDateFormat("HH:mm");
         calendar        = Calendar.getInstance();
