@@ -18,15 +18,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".util.ReceptorBoot"
-            android:enabled="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
-        <receiver android:name=".util.ReceptorAlarme">
-        </receiver>
-
         <activity
             android:name=".activity.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -61,6 +52,15 @@
             android:name=".activity.ReminderActionActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver
+            android:name=".util.ReceptorBoot"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".util.ReceptorAlarme"></receiver>
     </application>
 
 </manifest>
