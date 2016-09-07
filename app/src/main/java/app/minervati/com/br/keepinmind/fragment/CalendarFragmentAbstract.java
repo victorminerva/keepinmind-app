@@ -73,23 +73,20 @@ public class CalendarFragmentAbstract extends Fragment {
         for (int i=1; i < infoBasics.getDuracaoCiclo()-11; i++ ){
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_LOW_RISK.getValue());
-            //setAlarme(calendar.getTime(), IconReminderEnum.DAY_LOW_RISK.getValue());
         }
     }
 
     protected void addEventsDiasMedioRisco() {
-        for (int i=1; i < infoBasics.getDuracaoCiclo()-15; i++ ){
+        for (int i=1; i <= 8; i++ ){
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_MID_RISK.getValue());
-            //setAlarme(calendar.getTime(), IconReminderEnum.DAY_MID_RISK.getValue());
         }
     }
 
     protected void addEventsDiasTPM() {
-        for (int i=1; i < 3; i++ ) {
+        for (int i=1; i <= 2; i++ ) {
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_TPM.getValue());
-            //setAlarme(calendar.getTime(), IconReminderEnum.DAY_TPM.getValue());
         }
     }
 
