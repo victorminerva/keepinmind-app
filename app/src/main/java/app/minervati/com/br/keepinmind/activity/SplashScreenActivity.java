@@ -2,7 +2,10 @@ package app.minervati.com.br.keepinmind.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -37,7 +40,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Manifest.permission.VIBRATE,
                 Manifest.permission.SET_TIME
         };
-        ActivityCompat.requestPermissions(this, permissoes, WRITE_EXTERNAL_STORAGE_PERMISSION);
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                ActivityCompat.requestPermissions(this, permissoes, WRITE_EXTERNAL_STORAGE_PERMISSION);
+        }
 
 
         if (realmInfoBasics.size() == 0)
