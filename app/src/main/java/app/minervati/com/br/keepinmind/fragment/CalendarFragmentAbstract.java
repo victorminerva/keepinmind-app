@@ -90,6 +90,13 @@ public class CalendarFragmentAbstract extends Fragment {
         }
     }
 
+    protected void addEventsDiasMenstruacao() {
+        for (int i=1; i <= infoBasics.getQtdeDiasMenstru(); i++ ) {
+            calendar.add(Calendar.DATE, 1);
+            events.put(calendar.getTime(), IconReminderEnum.DAY_MENST.getValue());
+        }
+    }
+
     protected Integer checkDateSelected(SimpleDateFormat sdf, String dataFormatada, Integer value) {
         for(Date data : events.keySet()){
             if (dataFormatada.equalsIgnoreCase(sdf.format(data))){

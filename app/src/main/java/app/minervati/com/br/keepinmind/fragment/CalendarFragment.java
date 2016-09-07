@@ -56,14 +56,14 @@ public class CalendarFragment extends CalendarFragmentAbstract {
         events.put(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
         setAlarme(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
 
+        addEventsDiasMenstruacao();
+
         for (int i = 0; i <= 12; i++) {
             /**
              * Add evento reinicio do anticoncepcional
              */
-            if (infoBasics.getQtdeDiasMenstru() == 1 && infoBasics.getDuracaoCiclo() == 28)
+            if (infoBasics.getQtdeDiasMenstru() != 1 && infoBasics.getDuracaoCiclo() != 28)
                 calendar.add(Calendar.DATE, 1);
-            else
-                calendar.add(Calendar.DATE, infoBasics.getQtdeDiasMenstru() + 1);
 
 
             events.put(calendar.getTime(), IconReminderEnum.DAY_START.getValue());
@@ -81,6 +81,8 @@ public class CalendarFragment extends CalendarFragmentAbstract {
             calendar.add(Calendar.DATE, 1);
             events.put(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
             setAlarme(calendar.getTime(), IconReminderEnum.DAY_END.getValue());
+
+            addEventsDiasMenstruacao();
         }
 
         calendarView.updateCalendar(events);
@@ -124,6 +126,11 @@ public class CalendarFragment extends CalendarFragmentAbstract {
                         titulo      = getResources().getString(R.string.fim_anti);
                         subtitulo   = getResources().getString(R.string.ultimo_dia);
                         descricao   = getResources().getString(R.string.msg_ultimo_dia_anti);
+                        break;
+                    case 6:
+                        titulo      = getResources().getString(R.string.periodo_menstru);
+                        subtitulo   = getResources().getString(R.string.menstru);
+                        descricao   = getResources().getString(R.string.msg_dia_menstru);
                         break;
                     default:
                         titulo      = getResources().getString(R.string.sem_evento_nesta_data);

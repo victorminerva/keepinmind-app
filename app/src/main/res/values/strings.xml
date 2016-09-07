@@ -84,6 +84,9 @@
     <string name="telefone">Telefone da parceira:</string>
     <string name="msg_padrao">Insira uma mensagem padrão:</string>
     <string name="msg_default">Mensagem Padrão</string>
+    <string name="periodo_menstru">Período menstrual</string>
+    <string name="menstru">Menstruação</string>
+    <string name="msg_dia_menstru">A menstruação da sua parceira ocorre ou deverá ocorrer dentre estes dias.</string>
 
     <string-array name="values_ciclo">
         <item>21</item>

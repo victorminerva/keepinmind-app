@@ -9,7 +9,8 @@ public enum  IconReminderEnum {
     DAY_LOW_RISK(2),
     DAY_MID_RISK(3),
     DAY_TPM(4),
-    DAY_END(5);
+    DAY_END(5),
+    DAY_MENST(6);
 
     private Integer value;
 

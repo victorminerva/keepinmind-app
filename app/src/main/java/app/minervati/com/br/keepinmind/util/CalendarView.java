@@ -273,6 +273,9 @@ public class CalendarView extends LinearLayout {
                         case 5:
                             addAnEvent(view, eventDate, day, month, year, R.drawable.reminder_ending);
                             break;
+                        case 6:
+                            addAnEventColorBackground(view, eventDate, day, month, year, Color.RED);
+                            break;
                     }
                 }
             }
@@ -280,11 +283,62 @@ public class CalendarView extends LinearLayout {
         }
     }
 
+    /**
+     * Método responsavel por inserir uma cor de background para determinada data.
+     * @param view
+     * @param eventDate
+     * @param day
+     * @param month
+     * @param year
+     * @param color
+     */
+    public void addAnEventColorBackground(View view, Date eventDate, int day, int month, int year,
+                                          int color) {
+        if (eventDate.getDate() == day &&
+                eventDate.getMonth() == month &&
+                eventDate.getYear() == year) {
+            ((TextView) view).setTextColor(Color.WHITE);
+            ((TextView) view).setBackgroundColor(color);
+        }
+    }
+
+    /**
+     * Método responsável por inserir um drawable resource para determinada data.
+     * @param view
+     * @param eventDate
+     * @param day
+     * @param month
+     * @param year
+     * @param drawable
+     */
     public void addAnEvent(View view, Date eventDate, int day, int month, int year,
                            int drawable) {
         if (eventDate.getDate() == day &&
                 eventDate.getMonth() == month &&
                 eventDate.getYear() == year) {
+            ((TextView) view).setBackgroundResource(drawable);
+        }
+    }
+
+    /**
+     * Método responsavel por inserir uma cor de background, cor do texto e
+     * um drawable resource para determinada data.
+     * @param view
+     * @param eventDate
+     * @param day
+     * @param month
+     * @param year
+     * @param colorText
+     * @param colorBackground
+     * @param drawable
+     */
+    public void addAnEventWithColorAndDrawable(View view, Date eventDate, int day, int month, int year,
+                           int colorText, int colorBackground, int drawable) {
+        if (eventDate.getDate() == day &&
+                eventDate.getMonth() == month &&
+                eventDate.getYear() == year) {
+            ((TextView) view).setTextColor(colorText);
+            ((TextView) view).setBackgroundColor(colorBackground);
             ((TextView) view).setBackgroundResource(drawable);
         }
     }
